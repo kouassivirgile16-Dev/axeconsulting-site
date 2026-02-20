@@ -1,0 +1,1606 @@
+/* ========================================
+   AXECONSULTING RH - Theme Ultra Premium
+   ========================================
+
+   EXPLICATION POUR DEBUTANT :
+   Ce fichier CSS donne le STYLE au site.
+   Si le HTML est le squelette (les os),
+   le CSS est la peau, les vetements, le maquillage.
+
+   Il definit :
+   - Les COULEURS (bleu profond, orange, blanc...)
+   - Les TAILLES (des textes, des boutons...)
+   - Les POSITIONS (centrer, aligner a gauche...)
+   - Les ANIMATIONS (apparitions, survols...)
+
+   STRUCTURE DU FICHIER :
+   1. Variables (les couleurs qu'on reutilise partout)
+   2. Reset (on remet tout a zero pour partir d'une base propre)
+   3. Composants generaux (boutons, conteneurs)
+   4. Header (barre de navigation)
+   5. Hero (section d'accueil)
+   6. Piliers (les 3 forces du cabinet)
+   7. A propos (qui sommes-nous)
+   8. Services (les cartes de services)
+   9. Statistiques (les chiffres cles)
+   10. Contact (formulaire)
+   11. Footer (pied de page)
+   12. Animations
+   13. Responsive (adaptation telephone/tablette)
+======================================== */
+
+
+/* ===========================================
+   1. VARIABLES CSS
+   ===========================================
+   Les variables commencent par "--".
+   On les definit UNE FOIS ici, puis on les
+   reutilise dans tout le fichier.
+
+   Pourquoi ? Si on veut changer une couleur,
+   on la change a UN SEUL endroit et ca se met
+   a jour PARTOUT automatiquement !
+
+   Exemple : var(--blue-deep) = #0E2A47
+=========================================== */
+:root {
+  /* Couleurs principales */
+  --blue-deep: #0E2A47;       /* Bleu profond = couleur principale */
+  --blue-darker: #091c33;     /* Version encore plus sombre */
+  --blue-darkest: #060f1e;    /* Presque noir-bleu pour le footer */
+  --orange: #F47A20;          /* Orange premium = couleur d'accent */
+  --orange-hover: #e06910;    /* Orange un peu plus fonce au survol */
+  --white: #ffffff;            /* Blanc pur */
+  --off-white: #f8f9fb;       /* Gris TRES clair pour les fonds */
+  --gray-light: #f1f3f6;      /* Gris clair */
+  --gray: #e2e6ec;            /* Gris moyen pour les bordures */
+
+  /* Couleurs du texte */
+  --text-dark: #1a1a2e;       /* Texte principal (presque noir) */
+  --text-body: #4a5568;       /* Texte courant (gris fonce) */
+  --text-light: #718096;      /* Texte secondaire (gris) */
+  --text-white: rgba(255, 255, 255, 0.9);
+  --text-white-muted: rgba(255, 255, 255, 0.5);
+
+  /* WhatsApp */
+  --green-wa: #25d366;
+
+  /* Ombres */
+  --shadow-sm: 0 1px 3px rgba(14, 42, 71, 0.06);
+  --shadow: 0 4px 20px rgba(14, 42, 71, 0.08);
+  --shadow-lg: 0 12px 40px rgba(14, 42, 71, 0.12);
+  --shadow-card: 0 2px 16px rgba(14, 42, 71, 0.06);
+
+  /* Arrondis des coins */
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Transition = la vitesse des animations de survol */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ===========================================
+   2. RESET
+   ===========================================
+   On remet tout a zero.
+   Chaque navigateur (Chrome, Safari, Firefox)
+   a ses propres reglages par defaut.
+   Le reset les uniformise pour que le site
+   soit IDENTIQUE partout.
+=========================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* ^ box-sizing: border-box = les paddings et bordures
+     sont INCLUS dans la largeur. Tres pratique ! */
+}
+
+html {
+  scroll-behavior: smooth;
+  /* ^ Quand on clique sur un lien #section,
+     la page GLISSE doucement au lieu de sauter */
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* ^ "Inter" est la police principale.
+     Si elle ne charge pas, le navigateur utilise
+     la police systeme de l'ordinateur */
+  color: var(--text-body);
+  background: var(--white);
+  overflow-x: hidden;
+  /* ^ Cache le debordement horizontal (pas de scroll gauche-droite) */
+  -webkit-font-smoothing: antialiased;
+  /* ^ Rend le texte plus lisse sur Mac */
+  line-height: 1.6;
+}
+
+/* Polices pour les titres */
+h1, h2, h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  /* ^ Police elegante avec empattements pour les grands titres */
+  color: var(--text-dark);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Quand on selectionne du texte */
+::selection {
+  background: var(--orange);
+  color: white;
+}
+
+/* Barre de defilement personnalisee */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--blue-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--orange);
+  border-radius: 3px;
+}
+
+/* Images : toujours en bloc et jamais plus larges que leur parent */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Liens : pas de soulignement par defaut */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* ===========================================
+   3. COMPOSANTS GENERAUX
+   ===========================================
+   Conteneur, boutons, labels de section
+   = les pieces reutilisables partout
+=========================================== */
+
+/* -- Conteneur principal --
+   Centre le contenu et limite sa largeur a 1200px.
+   "margin: 0 auto" = centre horizontalement */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* -- Boutons -- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+/* Bouton orange (principal) */
+.btn-primary {
+  background: var(--orange);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--orange-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(244, 122, 32, 0.35);
+}
+.btn-primary svg {
+  transition: transform 0.3s;
+}
+.btn-primary:hover svg {
+  transform: translateX(4px);
+}
+
+/* Bouton outline blanc (bord blanc, fond transparent) */
+.btn-outline-white {
+  background: transparent;
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+.btn-outline-white:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+  transform: translateY(-2px);
+}
+
+/* Bouton WhatsApp vert */
+.btn-wa {
+  background: var(--green-wa);
+  color: white;
+}
+.btn-wa:hover {
+  background: #1ebe57;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+}
+
+/* Bouton pleine largeur */
+.btn-full {
+  width: 100%;
+  justify-content: center;
+}
+
+/* -- Labels de section (petits titres au-dessus des H2) -- */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+
+.label-line {
+  width: 32px;
+  height: 2px;
+  background: var(--orange);
+  display: block;
+}
+
+/* -- En-tetes de section -- */
+.section-head {
+  margin-bottom: 56px;
+}
+
+.section-head h2 {
+  font-size: clamp(28px, 3.5vw, 42px);
+  /* ^ clamp() = taille responsive :
+     minimum 28px, ideal 3.5% de la largeur ecran, maximum 42px */
+  margin-bottom: 16px;
+  color: var(--text-dark);
+}
+
+.section-head p {
+  font-size: 16px;
+  color: var(--text-light);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+
+/* ===========================================
+   4. HEADER (Barre de navigation)
+   ===========================================
+   La barre fixe en haut du site.
+   "position: sticky" + "top: 0" = reste collee en haut
+   quand on fait defiler la page.
+=========================================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  /* ^ z-index eleve = TOUJOURS au-dessus des autres elements */
+  background: var(--blue-deep);
+  transition: var(--transition);
+}
+
+/* Quand on scrolle, le header devient plus compact */
+.header.scrolled {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Disposition interne du header : logo a gauche, nav a droite */
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 76px;
+}
+
+/* -- Logo -- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  object-fit: contain;
+  background: white;
+  padding: 4px;
+}
+
+.logo-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  color: white;
+  letter-spacing: 2px;
+}
+
+/* Le "RH" en orange dans le nom */
+.logo-name span {
+  color: var(--orange);
+}
+
+.logo-sub {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--text-white-muted);
+  margin-top: 2px;
+}
+
+/* -- Navigation -- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav a {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 6px;
+  transition: var(--transition);
+  letter-spacing: 0.3px;
+  position: relative;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: white;
+}
+
+/* Petite barre sous le lien actif/survole */
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--orange);
+  border-radius: 1px;
+  transition: width 0.3s;
+}
+.nav a:hover::after,
+.nav a.active::after {
+  width: 50%;
+}
+
+/* Bouton Contact dans la nav */
+.nav-cta {
+  background: var(--orange) !important;
+  color: white !important;
+  border-radius: 6px !important;
+  margin-left: 8px;
+}
+.nav-cta:hover {
+  background: var(--orange-hover) !important;
+  transform: translateY(-1px);
+}
+.nav-cta::after {
+  display: none !important;
+}
+
+/* -- Bouton hamburger (menu mobile) --
+   Cache par defaut, visible seulement sur petit ecran */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+  z-index: 1002;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: 0.3s;
+  display: block;
+}
+
+/* Animation du hamburger quand le menu est ouvert :
+   La barre du haut tourne de 45 degres
+   La barre du milieu disparait
+   La barre du bas tourne de -45 degres
+   => Ca forme un X */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+/* ===========================================
+   5. HERO SECTION
+   ===========================================
+   La grande section d'accueil avec l'image
+   du Pont Alassane Ouattara en fond.
+
+   On empile les couches avec "position: absolute"
+   pour les mettre les unes sur les autres.
+=========================================== */
+.hero {
+  position: relative;
+  /* ^ "relative" permet de positionner les enfants
+     "absolute" A L'INTERIEUR de cette section */
+  min-height: 92vh;
+  /* ^ Prend au minimum 92% de la hauteur de l'ecran */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--blue-deep);
+}
+
+/* Couche 1 : Image de fond */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  /* ^ "inset: 0" = top:0, right:0, bottom:0, left:0
+     L'image remplit TOUT l'espace */
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* ^ "cover" = l'image remplit tout en gardant ses proportions,
+     meme si ca coupe un peu sur les bords */
+}
+
+/* Couche 2 : Voile sombre par-dessus l'image */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(14, 42, 71, 0.92) 0%,
+    rgba(14, 42, 71, 0.75) 40%,
+    rgba(14, 42, 71, 0.65) 60%,
+    rgba(14, 42, 71, 0.85) 100%
+  );
+  /* ^ "linear-gradient" = un degrade qui va du coin haut-gauche
+     vers le coin bas-droite.
+     Les valeurs rgba() definissent la transparence :
+     0.92 = presque opaque, 0.65 = semi-transparent */
+}
+
+/* Couche 3 : Le contenu textuel */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  /* ^ z-index: 10 = au-dessus de l'image et du voile */
+  max-width: 640px;
+  padding: 100px 0 80px;
+}
+
+/* Petit label au-dessus du H1 */
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 24px;
+  animation: fadeUp 0.8s ease both;
+  /* ^ Animation : le texte monte depuis le bas en apparaissant */
+}
+
+.hero-tag-line {
+  width: 32px;
+  height: 2px;
+  background: var(--orange);
+  display: block;
+}
+
+/* Titre principal du hero */
+.hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 800;
+  color: white;
+  line-height: 1.05;
+  margin-bottom: 28px;
+  letter-spacing: -1px;
+  animation: fadeUp 0.8s ease 0.1s both;
+}
+
+/* Le mot "Recruter." en orange */
+.hero h1 .highlight {
+  color: var(--orange);
+}
+
+/* Sous-titre */
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--text-white);
+  line-height: 1.7;
+  margin-bottom: 12px;
+  max-width: 520px;
+  font-weight: 400;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+/* Texte d'appui */
+.hero-desc {
+  font-size: 15px;
+  color: var(--text-white-muted);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 480px;
+  animation: fadeUp 0.8s ease 0.3s both;
+}
+
+/* Conteneur des 2 boutons */
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+
+/* Mention Facebook sous les boutons */
+.hero-social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  font-size: 12px;
+  color: var(--text-white-muted);
+  letter-spacing: 0.5px;
+  animation: fadeUp 0.8s ease 0.5s both;
+}
+
+
+/* ===========================================
+   6. SECTION PILIERS (Valeur Ajoutee)
+   ===========================================
+   3 colonnes qui montrent les 3 forces du cabinet.
+   Fond gris tres clair pour differencier du hero.
+=========================================== */
+.pillars {
+  padding: 80px 0;
+  background: var(--off-white);
+  border-bottom: 1px solid var(--gray);
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* ^ 3 colonnes de taille egale */
+  gap: 40px;
+}
+
+.pillar {
+  text-align: center;
+  padding: 40px 28px;
+  border-radius: var(--radius-xl);
+  transition: var(--transition);
+  background: var(--white);
+  border: 1px solid var(--gray);
+}
+
+.pillar:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+/* Icone dans un cercle */
+.pillar-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--orange);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.pillar:hover .pillar-icon {
+  background: var(--orange);
+}
+
+.pillar-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--orange);
+  transition: var(--transition);
+}
+
+.pillar:hover .pillar-icon svg {
+  stroke: white;
+}
+
+.pillar h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin-bottom: 12px;
+}
+
+.pillar p {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+
+/* ===========================================
+   7. SECTION "QUI SOMMES-NOUS"
+   ===========================================
+   Photo a gauche + texte structure a droite.
+   On utilise CSS Grid pour la disposition.
+=========================================== */
+.about {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  /* ^ Colonne photo = 400px fixe, colonne texte = le reste */
+  gap: 64px;
+  align-items: start;
+  margin-top: 40px;
+}
+
+/* -- Photo de la fondatrice -- */
+.about-photo-wrapper {
+  position: relative;
+}
+
+.about-photo {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+  /* ^ Ratio 3:4 = portrait. L'image sera toujours en format portrait */
+}
+
+/* Petit accent decoratif derriere la photo */
+.about-photo-accent {
+  position: absolute;
+  bottom: -12px;
+  right: -12px;
+  width: 120px;
+  height: 120px;
+  border: 3px solid var(--orange);
+  border-radius: var(--radius-xl);
+  z-index: -1;
+  /* ^ z-index: -1 = DERRIERE la photo */
+}
+
+/* Nom sous la photo */
+.about-photo-name {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.about-photo-name strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+
+.about-photo-name span {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blue-deep);
+}
+
+/* -- Texte de presentation -- */
+.about-text-col h2 {
+  font-size: clamp(28px, 3vw, 38px);
+  color: var(--blue-deep);
+  margin-bottom: 28px;
+}
+
+.about-paragraphs p {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+/* Paragraphe en surbrillance (la conviction fondatrice) */
+.about-highlight {
+  background: var(--off-white);
+  border-left: 3px solid var(--orange);
+  padding: 16px 20px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-weight: 500;
+  color: var(--blue-deep) !important;
+}
+
+/* Paragraphe final (l'ambition) */
+.about-vision {
+  font-style: italic;
+  color: var(--blue-deep) !important;
+  font-weight: 500;
+  padding-top: 8px;
+  border-top: 1px solid var(--gray);
+}
+
+
+/* ===========================================
+   8. SECTION SERVICES
+   ===========================================
+   3 cartes elegantes sur fond gris clair.
+   Chaque carte contient :
+   - icone, titre, description, liste, lien
+=========================================== */
+.services {
+  padding: 100px 0;
+  background: var(--off-white);
+}
+
+.srv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.srv-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 40px 32px;
+  border: 1px solid var(--gray);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Petite barre orange en haut de la carte */
+.srv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--orange);
+  transform: scaleX(0);
+  /* ^ scaleX(0) = invisible au debut */
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+/* Au survol, la barre apparait */
+.srv-card:hover::before {
+  transform: scaleX(1);
+}
+
+.srv-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+/* Icone du service dans un carre arrondi */
+.srv-icon-wrap {
+  width: 56px;
+  height: 56px;
+  background: rgba(14, 42, 71, 0.06);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: var(--transition);
+}
+
+.srv-card:hover .srv-icon-wrap {
+  background: var(--orange);
+}
+
+.srv-icon-wrap svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--blue-deep);
+  transition: var(--transition);
+}
+
+.srv-card:hover .srv-icon-wrap svg {
+  stroke: white;
+}
+
+.srv-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--blue-deep);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.srv-card > p {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Liste des details du service */
+.srv-list {
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+.srv-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 13.5px;
+  color: var(--text-body);
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.srv-list li:last-child {
+  border-bottom: none;
+}
+
+.srv-list li svg {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  stroke: var(--orange);
+}
+
+/* Lien "En savoir plus" en bas de la carte */
+.srv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--orange);
+  transition: var(--transition);
+}
+
+.srv-link svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--orange);
+  transition: transform 0.3s;
+}
+
+.srv-link:hover {
+  color: var(--orange-hover);
+}
+
+.srv-link:hover svg {
+  transform: translateX(4px);
+}
+
+
+/* ===========================================
+   9. SECTION STATISTIQUES
+   ===========================================
+   Fond bleu profond avec grands chiffres blancs.
+   Donne une impression de solidite et d'autorite.
+=========================================== */
+.stats {
+  padding: 100px 0;
+  background: var(--blue-deep);
+}
+
+.stats-head {
+  margin-bottom: 56px;
+}
+
+.stats-head h2 {
+  font-size: clamp(28px, 3.5vw, 42px);
+  color: white;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+}
+
+/* Nombre grand format */
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 5vw, 64px);
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+/* Texte sous le nombre */
+.stat-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-white-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Petite barre orange decorative sous chaque stat */
+.stat-bar {
+  width: 40px;
+  height: 3px;
+  background: var(--orange);
+  margin: 16px auto 0;
+  border-radius: 2px;
+}
+
+
+/* ===========================================
+   10. SECTION CONTACT
+   ===========================================
+   Formulaire a gauche + coordonnees a droite
+=========================================== */
+.contact {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 0;
+}
+
+/* -- Formulaire -- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 0.3px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 14px 18px;
+  border: 1.5px solid var(--gray);
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--text-dark);
+  background: var(--off-white);
+  transition: var(--transition);
+  outline: none;
+}
+
+/* Quand on clique dans un champ, la bordure change de couleur */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(244, 122, 32, 0.1);
+  background: var(--white);
+}
+
+/* Texte gris a l'interieur des champs vides */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-light);
+}
+
+.form-group textarea {
+  resize: vertical;
+  /* ^ L'utilisateur peut redimensionner verticalement seulement */
+  min-height: 120px;
+}
+
+/* -- Carte des coordonnees -- */
+.contact-info-card {
+  background: var(--blue-deep);
+  border-radius: var(--radius-xl);
+  padding: 40px 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-info-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 28px;
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contact-info-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-info-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--orange);
+}
+
+.contact-info-item strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-white-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.contact-info-item a,
+.contact-info-item span {
+  font-size: 14px;
+  color: var(--text-white);
+  transition: color 0.3s;
+}
+
+.contact-info-item a:hover {
+  color: var(--orange);
+}
+
+/* Bouton WhatsApp en bas de la carte */
+.contact-info-card .btn-wa {
+  margin-top: 32px;
+}
+
+
+/* ===========================================
+   11. FOOTER (Pied de page)
+   ===========================================
+   Fond presque noir. Informations de base.
+=========================================== */
+.footer {
+  background: var(--blue-darkest);
+  padding: 56px 0 0;
+  color: var(--text-white-muted);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Logo du footer */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: white;
+  padding: 3px;
+}
+
+.footer-logo-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.footer-logo-text span {
+  color: var(--orange);
+}
+
+.footer-brand p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Titres des colonnes du footer */
+.footer h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+/* Liens du footer */
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--orange);
+}
+
+/* Coordonnees dans le footer */
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+
+.footer-contact-item svg {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  stroke: var(--orange);
+}
+
+.footer-contact-item a,
+.footer-contact-item span {
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.3s;
+}
+
+.footer-contact-item a:hover {
+  color: var(--orange);
+}
+
+/* Barre copyright */
+.footer-bottom {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.2);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+/* ===========================================
+   12. BOUTON WHATSAPP FLOTTANT
+   ===========================================
+   Reste fixe en bas a droite de l'ecran.
+   position: fixed = ne bouge pas quand on scrolle.
+=========================================== */
+.wa-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  background: var(--green-wa);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: var(--transition);
+}
+
+.wa-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+}
+
+/* Anneau pulsant autour du bouton */
+.wa-float::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.3);
+  animation: waPulse 2.5s ease infinite;
+}
+
+.wa-float svg {
+  width: 26px;
+  height: 26px;
+}
+
+
+/* ===========================================
+   13. ANIMATIONS
+   ===========================================
+   Les animations font bouger les elements.
+
+   @keyframes = on definit l'animation
+   (d'ou elle part et ou elle arrive)
+
+   .rv = "reveal" = animation d'apparition au scroll
+   Les elements commencent invisibles et montent
+   quand ils entrent dans la zone visible.
+=========================================== */
+
+/* Animation : monte depuis le bas en apparaissant */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation du bouton WhatsApp (flottement leger) */
+@keyframes waPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Classe "rv" = elements qui apparaissent au scroll */
+.rv {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Quand l'element est visible (classe "v" ajoutee par JS) */
+.rv.v {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===========================================
+   14. RESPONSIVE (Adaptation mobile/tablette)
+   ===========================================
+   "@media" = on change le style en fonction
+   de la LARGEUR de l'ecran.
+
+   Les "breakpoints" (points de rupture) :
+   - 1024px = tablettes et petits ecrans
+   - 768px  = telephones en paysage
+   - 480px  = telephones en portrait
+=========================================== */
+
+/* ---- TABLETTE (1024px et moins) ---- */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 320px 1fr;
+    gap: 40px;
+  }
+
+  .srv-grid {
+    grid-template-columns: 1fr 1fr;
+    /* ^ 2 colonnes au lieu de 3 */
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    /* ^ 1 seule colonne : formulaire au-dessus, coordonnees en-dessous */
+  }
+}
+
+/* ---- MOBILE PAYSAGE (768px et moins) ---- */
+@media (max-width: 768px) {
+  /* HEADER */
+  .header .container {
+    height: 64px;
+  }
+
+  .logo-img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .logo-name {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .logo-sub {
+    display: none;
+    /* ^ On cache le sous-titre du logo sur mobile */
+  }
+
+  /* NAV : Menu hamburger */
+  .nav {
+    display: none;
+    /* ^ Cache la nav par defaut sur mobile */
+  }
+
+  .nav.open {
+    display: flex;
+    flex-direction: column;
+    /* ^ Quand ouverte, les liens sont empiles verticalement */
+    position: fixed;
+    inset: 0;
+    background: var(--blue-deep);
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    z-index: 1001;
+  }
+
+  .nav.open a {
+    font-size: 18px;
+    padding: 16px 24px;
+    color: white;
+  }
+
+  .hamburger {
+    display: flex;
+    /* ^ Affiche le hamburger sur mobile */
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 80vh;
+  }
+
+  .hero-content {
+    padding: 60px 0 40px;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 8vw, 48px);
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+
+  /* PILIERS */
+  .pillars {
+    padding: 60px 0;
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 70px 0;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-photo-col {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 70px 0;
+  }
+
+  .srv-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .srv-card {
+    padding: 32px 24px;
+  }
+
+  /* STATS */
+  .stats {
+    padding: 70px 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .stat-item {
+    padding: 28px 16px;
+  }
+
+  .stat-number {
+    font-size: clamp(36px, 8vw, 48px);
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 70px 0;
+  }
+
+  /* FOOTER */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* WA FLOAT */
+  .wa-float {
+    width: 52px;
+    height: 52px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .wa-float svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ---- PETIT MOBILE (480px et moins) ---- */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero {
+    min-height: 70vh;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+
+  .hero-tag {
+    font-size: 10px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 12px 20px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+
+  .about-text-col h2 {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+
+  .pillar {
+    padding: 28px 20px;
+  }
+
+  .srv-card {
+    padding: 28px 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-number {
+    font-size: clamp(32px, 10vw, 42px);
+  }
+
+  .contact-info-card {
+    padding: 28px 20px;
+  }
+}

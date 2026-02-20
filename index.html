@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!--
+    ============================================================
+    AXECONSULTING RH - Site Web Ultra Premium
+    ============================================================
+
+    EXPLICATION POUR DEBUTANT :
+    Ce fichier est le "squelette" du site web. C'est comme
+    le plan d'une maison : il dit OU chaque piece se trouve.
+
+    <head> = Les informations invisibles (titre, reglages)
+    <body> = Tout ce que les visiteurs voient sur la page
+
+    Chaque "section" est une partie de la page :
+    - header  = la barre de navigation en haut
+    - hero    = la grande image d'accueil avec le titre
+    - about   = la section "Qui sommes-nous"
+    - services = les cartes des services proposes
+    - etc.
+    ============================================================
+  -->
+
+  <!-- META : Les reglages de base du site -->
+  <meta charset="UTF-8">
+  <!-- ^ Permet d'afficher les accents (e, a, etc.) -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ^ Rend le site joli sur telephone ET ordinateur -->
+
+  <title>AXECONSULTING RH | Cabinet de Conseil RH Premium en Cote d'Ivoire</title>
+  <!-- ^ Le texte qui apparait dans l'onglet du navigateur -->
+
+  <!-- META SEO : Aide Google a comprendre le site -->
+  <meta name="description" content="AXECONSULTING RH - Cabinet de conseil en Ressources Humaines. Recrutement sur mesure, accompagnement strategique de la diaspora ivoirienne, creation d'entreprise a distance en Cote d'Ivoire.">
+  <meta name="keywords" content="cabinet RH, recrutement Cote d'Ivoire, diaspora ivoirienne, creation entreprise, conseil RH, Abidjan">
+
+  <!-- Open Graph : Pour un bel apercu quand on partage le lien sur Facebook/WhatsApp -->
+  <meta property="og:title" content="AXECONSULTING RH | Cabinet de Conseil RH Premium">
+  <meta property="og:description" content="Recrutement sur mesure et accompagnement strategique de la diaspora ivoirienne.">
+  <meta property="og:type" content="website">
+
+  <!-- POLICES : On charge les polices depuis Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!--
+    Inter = police moderne et fine pour le texte courant
+    Playfair Display = police elegante avec empattement pour les grands titres
+  -->
+
+  <!-- CSS : Le fichier qui donne les couleurs, tailles, positions -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!--
+    ============================================================
+    ICONES SVG REUTILISABLES
+    ============================================================
+    On definit les icones ici UNE SEULE FOIS, puis on les
+    reutilise partout avec <use href="#nom">.
+    C'est comme un tampon : on le fabrique une fois et on
+    l'utilise autant de fois qu'on veut !
+
+    display:none = on les cache car ce ne sont que des "modeles"
+    ============================================================
+  -->
+  <svg style="display:none">
+    <!-- Icone WhatsApp -->
+    <symbol id="wa" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </symbol>
+    <!-- Icone globe/monde -->
+    <symbol id="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+    </symbol>
+    <!-- Icone structure/blocs -->
+    <symbol id="icon-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+    </symbol>
+    <!-- Icone medaille/performance -->
+    <symbol id="icon-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+    </symbol>
+    <!-- Icone batiment -->
+    <symbol id="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/>
+    </symbol>
+    <!-- Icone personnes -->
+    <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+    </symbol>
+    <!-- Icone dossier/fichier -->
+    <symbol id="icon-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+    </symbol>
+    <!-- Icone fleche -->
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+    </symbol>
+    <!-- Icone email -->
+    <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+    </symbol>
+    <!-- Icone telephone -->
+    <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+    </symbol>
+    <!-- Icone localisation -->
+    <symbol id="icon-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+    </symbol>
+    <!-- Icone check -->
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </symbol>
+    <!-- Icone Facebook -->
+    <symbol id="icon-facebook" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </symbol>
+  </svg>
+
+
+  <!--
+    ============================================================
+    BOUTON WHATSAPP FLOTTANT
+    ============================================================
+    Ce bouton reste TOUJOURS visible en bas a droite de l'ecran.
+    "position: fixed" dans le CSS le colle a l'ecran.
+    Quand on clique dessus, ca ouvre WhatsApp.
+    ============================================================
+  -->
+  <a href="https://wa.me/2250718676696" target="_blank" class="wa-float" title="Contactez-nous sur WhatsApp" aria-label="WhatsApp">
+    <svg fill="white"><use href="#wa"/></svg>
+  </a>
+
+
+  <!--
+    ============================================================
+    HEADER (Barre de navigation)
+    ============================================================
+    C'est la barre tout en haut du site.
+    "sticky" signifie qu'elle reste collee en haut quand on scrolle.
+
+    Elle contient :
+    - Le logo + nom du cabinet
+    - Les liens de navigation (Accueil, Services, etc.)
+    - Le bouton hamburger (3 barres) qui apparait sur telephone
+    ============================================================
+  -->
+  <header class="header" id="header">
+    <div class="container">
+      <!-- LOGO : Image + texte a cote -->
+      <a href="#" class="logo">
+        <img src="images/logo.jpg" alt="AXECONSULTING RH" class="logo-img">
+        <div>
+          <div class="logo-name">AXECONSULTING <span>RH</span></div>
+          <div class="logo-sub">Cabinet de Conseil en Ressources Humaines</div>
+        </div>
+      </a>
+
+      <!-- NAVIGATION : Les liens vers les sections -->
+      <nav class="nav" id="mainNav">
+        <a href="#" class="active">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#about">Qui sommes-nous</a>
+        <a href="#stats">Notre Impact</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+
+      <!-- HAMBURGER : Menu pour mobile (3 petites barres) -->
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+
+  <!--
+    ============================================================
+    HERO SECTION (Section d'accueil principale)
+    ============================================================
+    C'est la PREMIERE chose que les visiteurs voient.
+    Grande image de fond + titre percutant + boutons.
+
+    Structure en couches (comme des calques Photoshop) :
+    1. hero-bg      = l'image du Pont Alassane Ouattara
+    2. hero-overlay = un voile sombre par-dessus l'image
+    3. hero-content = le texte et les boutons PAR-DESSUS le voile
+    ============================================================
+  -->
+  <section class="hero" id="hero">
+    <!-- Couche 1 : Image de fond -->
+    <div class="hero-bg">
+      <img src="images/1F6AD0A5-B0DD-4F09-9FD2-F661F4FE2F93.PNG" alt="Pont Alassane Ouattara - Abidjan, Cote d'Ivoire">
+    </div>
+    <!-- Couche 2 : Voile sombre -->
+    <div class="hero-overlay"></div>
+
+    <!-- Couche 3 : Contenu textuel -->
+    <div class="container">
+      <div class="hero-content">
+        <!-- Petit texte au-dessus du titre -->
+        <div class="hero-tag">
+          <span class="hero-tag-line"></span>
+          Cabinet de Conseil RH Premium
+        </div>
+
+        <!-- TITRE PRINCIPAL (H1 = le titre le plus important pour Google) -->
+        <h1>Structurer.<br><span class="highlight">Recruter.</span><br>Performer.</h1>
+
+        <!-- Sous-titre -->
+        <p class="hero-subtitle">Recrutement sur mesure et accompagnement strategique de la diaspora ivoirienne dans la creation d'entreprise a distance.</p>
+
+        <!-- Texte d'appui -->
+        <p class="hero-desc">AXECONSULTING RH accompagne les entreprises et investisseurs avec rigueur, methode et vision strategique.</p>
+
+        <!-- Boutons d'action -->
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">
+            Contactez-nous
+            <svg width="16" height="16"><use href="#icon-arrow-right"/></svg>
+          </a>
+          <a href="#services" class="btn btn-outline-white">
+            Decouvrir nos services
+          </a>
+        </div>
+
+        <!-- Mention Facebook -->
+        <div class="hero-social">
+          <svg width="14" height="14" fill="currentColor"><use href="#icon-facebook"/></svg>
+          <span>SEA MULTISERVICES CI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+    ============================================================
+    SECTION VALEUR AJOUTEE (3 Piliers Strategiques)
+    ============================================================
+    3 colonnes cote a cote qui montrent les forces du cabinet.
+    Chaque "pilier" a :
+    - une icone (dessin simple)
+    - un titre
+    - une phrase d'autorite
+    ============================================================
+  -->
+  <section class="pillars">
+    <div class="container">
+      <div class="pillars-grid">
+        <!-- Pilier 1 -->
+        <div class="pillar rv">
+          <div class="pillar-icon">
+            <svg><use href="#icon-globe"/></svg>
+          </div>
+          <h3>Expertise Internationale</h3>
+          <p>Une vision globale et une experience forgee entre Paris et Abidjan au service de votre reussite.</p>
+        </div>
+        <!-- Pilier 2 -->
+        <div class="pillar rv">
+          <div class="pillar-icon">
+            <svg><use href="#icon-layers"/></svg>
+          </div>
+          <h3>Accompagnement Structure</h3>
+          <p>Une methodologie rigoureuse et un suivi personnalise a chaque etape de votre projet.</p>
+        </div>
+        <!-- Pilier 3 -->
+        <div class="pillar rv">
+          <div class="pillar-icon">
+            <svg><use href="#icon-award"/></svg>
+          </div>
+          <h3>Exigence &amp; Performance</h3>
+          <p>Des standards eleves et des resultats mesurables pour une croissance durable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+    ============================================================
+    SECTION "QUI SOMMES-NOUS"
+    ============================================================
+    Photo de la fondatrice a gauche + texte a droite.
+    On utilise CSS Grid pour mettre les 2 cote a cote.
+    Sur telephone, ils se mettent l'un sous l'autre.
+    ============================================================
+  -->
+  <section class="about" id="about">
+    <div class="container">
+      <!-- Petit titre de section -->
+      <div class="section-label rv">
+        <span class="label-line"></span>
+        <span>Qui sommes-nous</span>
+      </div>
+
+      <div class="about-grid">
+        <!-- Colonne gauche : Photo de la fondatrice -->
+        <div class="about-photo-col rv">
+          <div class="about-photo-wrapper">
+            <img src="images/WhatsApp Image 2026-02-18 at 18.38.06.jpeg" alt="Axelle SEA - Fondatrice d'AXECONSULTING RH" class="about-photo">
+            <div class="about-photo-accent"></div>
+          </div>
+          <div class="about-photo-name">
+            <strong>La Fondatrice</strong>
+            <span>Axelle SEA</span>
+          </div>
+        </div>
+
+        <!-- Colonne droite : Texte de presentation -->
+        <div class="about-text-col rv">
+          <h2>Un cabinet ne d'une conviction forte</h2>
+
+          <div class="about-paragraphs">
+            <p>Titulaire d'un Master II en Management des Ressources Humaines obtenu au sein d'une ecole de commerce parisienne, j'ai construit mon expertise au sein de grandes entreprises francaises ainsi que dans une entreprise de premier plan a Abidjan.</p>
+
+            <p>Specialiste du recrutement national et international, j'accompagne les organisations avec exigence, methode et engagement.</p>
+
+            <p class="about-highlight">Fonde en 2020, AXECONSULTING RH est ne d'une conviction forte : la diaspora ivoirienne represente un levier strategique majeur pour le developpement economique du pays.</p>
+
+            <p>Structurer, securiser et faciliter la creation d'entreprise a distance est au coeur de notre mission.</p>
+
+            <p>Nous accompagnons egalement les PME/PMI dans leurs enjeux de recrutement sur mesure, de gestion administrative et de conseil RH, avec une approche rigoureuse et orientee performance.</p>
+
+            <p class="about-vision">Au-dela des services, notre ambition est claire : contribuer a batir des entreprises solides, durables et creatrices de valeur en Cote d'Ivoire.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+    ============================================================
+    SECTION SERVICES PREMIUM
+    ============================================================
+    3 cartes elegantes qui presentent les services.
+    Chaque carte a :
+    - Une icone en haut
+    - Un titre
+    - Une description
+    - Une liste de details (cachee au debut)
+    - Un bouton pour voir les details
+
+    "rv" = classe pour l'animation d'apparition au scroll
+    ============================================================
+  -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-label rv">
+        <span class="label-line"></span>
+        <span>Nos Services</span>
+      </div>
+      <div class="section-head rv">
+        <h2>Des solutions strategiques pour votre croissance</h2>
+        <p>Decouvrez nos prestations concues pour repondre aux besoins des entreprises et de la diaspora ivoirienne.</p>
+      </div>
+
+      <div class="srv-grid">
+        <!-- Carte Service 1 : Creation d'entreprise -->
+        <div class="srv-card rv">
+          <div class="srv-icon-wrap">
+            <svg><use href="#icon-building"/></svg>
+          </div>
+          <h3>Creation d'entreprise 100% a distance</h3>
+          <p>Nous prenons en charge la creation complete de votre entreprise en Cote d'Ivoire, depuis l'etranger.</p>
+          <ul class="srv-list">
+            <li><svg><use href="#icon-check"/></svg>Preparation complete du dossier</li>
+            <li><svg><use href="#icon-check"/></svg>Redaction des statuts juridiques</li>
+            <li><svg><use href="#icon-check"/></svg>Immatriculation et extrait RCCM</li>
+            <li><svg><use href="#icon-check"/></svg>Ouverture du compte bancaire professionnel</li>
+          </ul>
+          <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20la%20cr%C3%A9ation%20d%27entreprise." target="_blank" class="srv-link">
+            En savoir plus
+            <svg><use href="#icon-arrow-right"/></svg>
+          </a>
+        </div>
+
+        <!-- Carte Service 2 : Recrutement -->
+        <div class="srv-card rv">
+          <div class="srv-icon-wrap">
+            <svg><use href="#icon-users"/></svg>
+          </div>
+          <h3>Recrutement national &amp; international sur mesure</h3>
+          <p>Nous identifions et selectionnons les meilleurs talents pour repondre a vos besoins specifiques.</p>
+          <ul class="srv-list">
+            <li><svg><use href="#icon-check"/></svg>Analyse des besoins en personnel</li>
+            <li><svg><use href="#icon-check"/></svg>Preselection et entretiens approfondis</li>
+            <li><svg><use href="#icon-check"/></svg>Verification des references</li>
+            <li><svg><use href="#icon-check"/></svg>Suivi d'integration des recrues</li>
+          </ul>
+          <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20le%20recrutement." target="_blank" class="srv-link">
+            En savoir plus
+            <svg><use href="#icon-arrow-right"/></svg>
+          </a>
+        </div>
+
+        <!-- Carte Service 3 : Gestion administrative -->
+        <div class="srv-card rv">
+          <div class="srv-icon-wrap">
+            <svg><use href="#icon-briefcase"/></svg>
+          </div>
+          <h3>Gestion administrative &amp; Conseil RH strategique</h3>
+          <p>Un accompagnement complet pour optimiser votre gestion administrative et vos pratiques RH.</p>
+          <ul class="srv-list">
+            <li><svg><use href="#icon-check"/></svg>Gestion des documents administratifs</li>
+            <li><svg><use href="#icon-check"/></svg>Declarations fiscales et sociales</li>
+            <li><svg><use href="#icon-check"/></svg>Suivi des obligations legales</li>
+            <li><svg><use href="#icon-check"/></svg>Conseil et accompagnement personnalise</li>
+          </ul>
+          <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20la%20gestion%20administrative." target="_blank" class="srv-link">
+            En savoir plus
+            <svg><use href="#icon-arrow-right"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+    ============================================================
+    SECTION DIFFERENCIATION (Statistiques)
+    ============================================================
+    Section avec fond sombre bleu profond.
+    Affiche des grands chiffres pour impressionner :
+    - Annee de creation
+    - Nombre de diaspora accompagnee
+    - Nombre de PME accompagnees
+
+    Les chiffres s'animent (comptent de 0 a la valeur finale)
+    quand cette section apparait a l'ecran.
+    ============================================================
+  -->
+  <section class="stats" id="stats">
+    <div class="container">
+      <div class="section-label rv" style="--label-color: rgba(255,255,255,0.5)">
+        <span class="label-line" style="background: var(--orange)"></span>
+        <span style="color: rgba(255,255,255,0.7)">Notre Impact</span>
+      </div>
+      <div class="stats-head rv">
+        <h2>Des resultats qui parlent d'eux-memes</h2>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-item rv">
+          <div class="stat-number" data-count="2020" data-suffix="">2020</div>
+          <div class="stat-label">Annee de creation</div>
+          <div class="stat-bar"></div>
+        </div>
+        <div class="stat-item rv">
+          <div class="stat-number" data-count="150" data-suffix="+">0</div>
+          <div class="stat-label">Diaspora accompagnee</div>
+          <div class="stat-bar"></div>
+        </div>
+        <div class="stat-item rv">
+          <div class="stat-number" data-count="80" data-suffix="+">0</div>
+          <div class="stat-label">PME accompagnees</div>
+          <div class="stat-bar"></div>
+        </div>
+        <div class="stat-item rv">
+          <div class="stat-number" data-count="98" data-suffix="%">0</div>
+          <div class="stat-label">Taux de satisfaction</div>
+          <div class="stat-bar"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+    ============================================================
+    SECTION CONTACT
+    ============================================================
+    Formulaire professionnel avec 4 champs :
+    - Nom, Email, Telephone, Message
+
+    + Coordonnees a droite
+    + Mention Facebook
+
+    "required" sur les champs = le navigateur verifie que
+    l'utilisateur a bien rempli avant d'envoyer.
+    ============================================================
+  -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-label rv">
+        <span class="label-line"></span>
+        <span>Contact</span>
+      </div>
+      <div class="section-head rv">
+        <h2>Echangeons sur votre projet</h2>
+        <p>Prenez contact avec notre equipe pour discuter de vos besoins et decouvrir comment nous pouvons vous accompagner.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Colonne gauche : Formulaire -->
+        <div class="contact-form-wrap rv">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Nom complet</label>
+              <input type="text" id="name" name="name" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Adresse email</label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Telephone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+225 XX XX XX XX XX">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Decrivez votre projet ou votre besoin..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              Envoyer le message
+              <svg width="16" height="16"><use href="#icon-arrow-right"/></svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- Colonne droite : Coordonnees -->
+        <div class="contact-info-wrap rv">
+          <div class="contact-info-card">
+            <h3>Nos coordonnees</h3>
+            <div class="contact-info-list">
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg><use href="#icon-phone"/></svg>
+                </div>
+                <div>
+                  <strong>Telephone</strong>
+                  <a href="tel:+2250718676696">+225 07 18 67 66 96</a>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg><use href="#icon-mail"/></svg>
+                </div>
+                <div>
+                  <strong>Email</strong>
+                  <a href="mailto:axeconsulting@outlook.fr">axeconsulting@outlook.fr</a>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg><use href="#icon-map"/></svg>
+                </div>
+                <div>
+                  <strong>Adresse</strong>
+                  <span>Abidjan, Cote d'Ivoire</span>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg fill="currentColor"><use href="#icon-facebook"/></svg>
+                </div>
+                <div>
+                  <strong>Facebook</strong>
+                  <span>SEA MULTISERVICES CI</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bouton WhatsApp -->
+            <a href="https://wa.me/2250718676696" target="_blank" class="btn btn-wa btn-full">
+              <svg width="18" height="18" fill="white"><use href="#wa"/></svg>
+              Ecrire sur WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+    ============================================================
+    FOOTER (Pied de page)
+    ============================================================
+    La derniere partie du site. Contient :
+    - Resume du cabinet
+    - Liens rapides
+    - Coordonnees
+    - Copyright
+    ============================================================
+  -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Colonne 1 : Marque -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="images/logo.jpg" alt="AXECONSULTING RH" class="footer-logo-img">
+            <span class="footer-logo-text">AXECONSULTING <span>RH</span></span>
+          </div>
+          <p>Cabinet specialise dans l'accompagnement de la diaspora ivoirienne pour la creation d'entreprise, le recrutement et la gestion administrative.</p>
+        </div>
+
+        <!-- Colonne 2 : Navigation -->
+        <div>
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">Qui sommes-nous</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Colonne 3 : Services -->
+        <div>
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Creation d'entreprise</a></li>
+            <li><a href="#services">Recrutement sur mesure</a></li>
+            <li><a href="#services">Gestion administrative</a></li>
+            <li><a href="#services">Conseil RH</a></li>
+          </ul>
+        </div>
+
+        <!-- Colonne 4 : Contact -->
+        <div>
+          <h4>Contact</h4>
+          <div class="footer-contact-item">
+            <svg><use href="#icon-phone"/></svg>
+            <a href="tel:+2250718676696">+225 07 18 67 66 96</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg><use href="#icon-mail"/></svg>
+            <a href="mailto:axeconsulting@outlook.fr">axeconsulting@outlook.fr</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg><use href="#icon-map"/></svg>
+            <span>Abidjan, Cote d'Ivoire</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg fill="currentColor"><use href="#icon-facebook"/></svg>
+            <span>SEA MULTISERVICES CI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barre de copyright tout en bas -->
+      <div class="footer-bottom">
+        <span>&copy; 2026 AXECONSULTING RH &mdash; Tous droits reserves</span>
+        <span>Facebook : SEA MULTISERVICES CI</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT : Le fichier qui ajoute les animations et interactions -->
+  <script src="js/main.js"></script>
+</body>
+</html>
