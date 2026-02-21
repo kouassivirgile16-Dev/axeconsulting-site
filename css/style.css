@@ -436,6 +436,12 @@ a {
   color: var(--orange);
 }
 
+/* Quand le header est scrollé, adapter les couleurs du toggle */
+.header.scrolled .lang-toggle {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(14, 42, 71, 0.06);
+}
+
 /* -- Système bilingue : visibilité FR/EN -- */
 body.lang-fr .en {
   display: none !important;

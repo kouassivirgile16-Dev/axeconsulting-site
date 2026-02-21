@@ -46,7 +46,9 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+  <!-- NOTE: Permissions-Policy doit être configuré via HTTP headers sur le serveur.
+       En attendant le déploiement, cette meta n'a pas d'effet mais documente l'intention. -->
+  <meta name="permissions-policy" content="camera=(), microphone=(), geolocation=()">
 
   <!-- POLICES : On charge les polices depuis Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,14 +62,8 @@
   <!-- CSS : Le fichier qui donne les couleurs, tailles, positions -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- BILINGUAL SYSTEM STYLES -->
+  <!-- BILINGUAL VISIBILITY : cache la langue inactive avant le chargement JS -->
   <style>
-    /* Language toggle */
-    .lang-toggle{background:none;border:1px solid rgba(255,255,255,.3);color:inherit;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:.85rem;font-family:Inter,sans-serif;font-weight:500;transition:all .3s;display:flex;align-items:center;gap:4px}
-    .lang-toggle:hover{border-color:var(--orange);color:var(--orange)}
-    .lang-toggle .lang-active{color:var(--orange);font-weight:700}
-    .header.scrolled .lang-toggle{border-color:rgba(0,0,0,.2);color:inherit}
-    /* Language visibility */
     html[lang="fr"] .en{display:none!important}
     html[lang="en"] .fr{display:none!important}
   </style>
