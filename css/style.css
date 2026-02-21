@@ -1465,37 +1465,37 @@ body:not(.lang-fr):not(.lang-en) .en {
 
 /* Couleurs VIVES avec glow pour chaque icône de contact */
 
-/* Téléphone - Orange vif */
+/* Téléphone - Vert émeraude */
 .contact-info-item:nth-child(1) .contact-info-icon {
-  background: linear-gradient(135deg, #FF8C00, #F47A20);
-  box-shadow: 0 4px 16px rgba(255, 140, 0, 0.35);
+  background: linear-gradient(135deg, #059669, #10B981);
+  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.35);
 }
 .contact-info-item:nth-child(1) .contact-info-icon svg {
   stroke: white;
 }
 
-/* Email - Bleu électrique */
+/* Email - Violet vibrant */
 .contact-info-item:nth-child(2) .contact-info-icon {
-  background: linear-gradient(135deg, #2563EB, #3B82F6);
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
 }
 .contact-info-item:nth-child(2) .contact-info-icon svg {
   stroke: white;
 }
 
-/* Adresse - Vert émeraude */
+/* Adresse - Orange vif */
 .contact-info-item:nth-child(3) .contact-info-icon {
-  background: linear-gradient(135deg, #059669, #10B981);
-  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.35);
+  background: linear-gradient(135deg, #FF8C00, #F47A20);
+  box-shadow: 0 4px 16px rgba(255, 140, 0, 0.35);
 }
 .contact-info-item:nth-child(3) .contact-info-icon svg {
   stroke: white;
 }
 
-/* Facebook - Violet vibrant */
+/* Facebook - Bleu électrique */
 .contact-info-item:nth-child(4) .contact-info-icon {
-  background: linear-gradient(135deg, #4F46E5, #7C3AED);
-  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
+  background: linear-gradient(135deg, #2563EB, #3B82F6);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
 }
 .contact-info-item:nth-child(4) .contact-info-icon svg {
   fill: white;
@@ -1522,10 +1522,10 @@ body:not(.lang-fr):not(.lang-en) .en {
 }
 
 /* Labels colorés pour chaque coordonnée */
-.contact-info-item:nth-child(1) strong { color: #FF8C00; }
-.contact-info-item:nth-child(2) strong { color: #60A5FA; }
-.contact-info-item:nth-child(3) strong { color: #34D399; }
-.contact-info-item:nth-child(4) strong { color: #A78BFA; }
+.contact-info-item:nth-child(1) strong { color: #34D399; }
+.contact-info-item:nth-child(2) strong { color: #A78BFA; }
+.contact-info-item:nth-child(3) strong { color: #FF8C00; }
+.contact-info-item:nth-child(4) strong { color: #60A5FA; }
 
 .contact-info-item a,
 .contact-info-item span {
@@ -1648,10 +1648,10 @@ body:not(.lang-fr):not(.lang-en) .en {
 }
 
 /* Couleurs vives des icônes footer */
-.footer-contact-item:nth-child(1) svg { stroke: #FF8C00; }
-.footer-contact-item:nth-child(2) svg { stroke: #60A5FA; }
-.footer-contact-item:nth-child(3) svg { stroke: #34D399; }
-.footer-contact-item:nth-child(4) svg { fill: #A78BFA; stroke: none; }
+.footer-contact-item:nth-child(1) svg { stroke: #34D399; }
+.footer-contact-item:nth-child(2) svg { stroke: #A78BFA; }
+.footer-contact-item:nth-child(3) svg { stroke: #FF8C00; }
+.footer-contact-item:nth-child(4) svg { fill: #60A5FA; stroke: none; }
 
 .footer-contact-item:hover svg {
   transform: scale(1.2);
