@@ -24,22 +24,29 @@
 
   <!-- META : Les reglages de base du site -->
   <meta charset="UTF-8">
-  <!-- ^ Permet d'afficher les accents (e, a, etc.) -->
+  <!-- ^ Permet d'afficher les accents (é, à, etc.) -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- ^ Rend le site joli sur telephone ET ordinateur -->
 
-  <title>AXECONSULTING RH | Cabinet de Conseil RH Premium en Cote d'Ivoire</title>
+  <title>AXECONSULTING RH | Cabinet de Conseil RH Premium en Côte d'Ivoire</title>
   <!-- ^ Le texte qui apparait dans l'onglet du navigateur -->
 
   <!-- META SEO : Aide Google a comprendre le site -->
-  <meta name="description" content="AXECONSULTING RH - Cabinet de conseil en Ressources Humaines. Recrutement sur mesure, accompagnement strategique de la diaspora ivoirienne, creation d'entreprise a distance en Cote d'Ivoire.">
-  <meta name="keywords" content="cabinet RH, recrutement Cote d'Ivoire, diaspora ivoirienne, creation entreprise, conseil RH, Abidjan">
+  <meta name="description" content="AXECONSULTING RH - Cabinet de conseil en Ressources Humaines. Recrutement sur mesure, accompagnement stratégique de la diaspora ivoirienne, création d'entreprise à distance en Côte d'Ivoire.">
+  <meta name="keywords" content="cabinet RH, recrutement Côte d'Ivoire, diaspora ivoirienne, création entreprise, conseil RH, Abidjan">
 
   <!-- Open Graph : Pour un bel apercu quand on partage le lien sur Facebook/WhatsApp -->
   <meta property="og:title" content="AXECONSULTING RH | Cabinet de Conseil RH Premium">
-  <meta property="og:description" content="Recrutement sur mesure et accompagnement strategique de la diaspora ivoirienne.">
+  <meta property="og:description" content="Recrutement sur mesure et accompagnement stratégique de la diaspora ivoirienne.">
   <meta property="og:type" content="website">
+
+  <!-- SECURITY HEADERS -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://wa.me; frame-ancestors 'none'">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 
   <!-- POLICES : On charge les polices depuis Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +59,18 @@
 
   <!-- CSS : Le fichier qui donne les couleurs, tailles, positions -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- BILINGUAL SYSTEM STYLES -->
+  <style>
+    /* Language toggle */
+    .lang-toggle{background:none;border:1px solid rgba(255,255,255,.3);color:inherit;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:.85rem;font-family:Inter,sans-serif;font-weight:500;transition:all .3s;display:flex;align-items:center;gap:4px}
+    .lang-toggle:hover{border-color:var(--orange);color:var(--orange)}
+    .lang-toggle .lang-active{color:var(--orange);font-weight:700}
+    .header.scrolled .lang-toggle{border-color:rgba(0,0,0,.2);color:inherit}
+    /* Language visibility */
+    html[lang="fr"] .en{display:none!important}
+    html[lang="en"] .fr{display:none!important}
+  </style>
 </head>
 
 <body>
@@ -120,6 +139,42 @@
     <symbol id="icon-facebook" viewBox="0 0 24 24" fill="currentColor">
       <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
     </symbol>
+    <!-- Icone shield-check (securite) -->
+    <symbol id="icon-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+    </symbol>
+    <!-- Icone target (cible) -->
+    <symbol id="icon-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+    </symbol>
+    <!-- Icone trending-up (croissance) -->
+    <symbol id="icon-trending-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+    </symbol>
+    <!-- Icone search (recherche) -->
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </symbol>
+    <!-- Icone lock (verrou) -->
+    <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+    </symbol>
+    <!-- Icone rocket (fusee) -->
+    <symbol id="icon-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+    </symbol>
+    <!-- Icone file-text (document) -->
+    <symbol id="icon-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+    </symbol>
+    <!-- Icone handshake (poignee de main) -->
+    <symbol id="icon-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 17a2 2 0 01-2 2H6a2 2 0 01-2-2v-4a2 2 0 012-2h3l4-4 4 4h3a2 2 0 012 2v4a2 2 0 01-2 2h-3a2 2 0 01-2-2"/><path d="M8 13v4"/><path d="M16 13v4"/>
+    </symbol>
+    <!-- Icone language (langues) -->
+    <symbol id="icon-language" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/>
+    </symbol>
   </svg>
 
 
@@ -132,7 +187,7 @@
     Quand on clique dessus, ca ouvre WhatsApp.
     ============================================================
   -->
-  <a href="https://wa.me/2250718676696" target="_blank" class="wa-float" title="Contactez-nous sur WhatsApp" aria-label="WhatsApp">
+  <a href="https://wa.me/2250718676696" target="_blank" rel="noopener noreferrer" class="wa-float" title="Contactez-nous sur WhatsApp" aria-label="WhatsApp">
     <svg fill="white"><use href="#wa"/></svg>
   </a>
 
@@ -157,18 +212,21 @@
         <img src="images/logo.jpg" alt="AXECONSULTING RH" class="logo-img">
         <div>
           <div class="logo-name">AXECONSULTING <span>RH</span></div>
-          <div class="logo-sub">Cabinet de Conseil en Ressources Humaines</div>
+          <div class="logo-sub"><span class="fr">Cabinet de Conseil en Ressources Humaines</span><span class="en">HR Consulting Firm</span></div>
         </div>
       </a>
 
       <!-- NAVIGATION : Les liens vers les sections -->
       <nav class="nav" id="mainNav">
-        <a href="#" class="active">Accueil</a>
-        <a href="#services">Services</a>
-        <a href="#about">Qui sommes-nous</a>
-        <a href="#stats">Notre Impact</a>
-        <a href="#contact" class="nav-cta">Contact</a>
+        <a href="#" class="active"><span class="fr">Accueil</span><span class="en">Home</span></a>
+        <a href="#services"><span class="fr">Services</span><span class="en">Services</span></a>
+        <a href="#about"><span class="fr">Qui sommes-nous</span><span class="en">About Us</span></a>
+        <a href="#stats"><span class="fr">Notre Impact</span><span class="en">Our Impact</span></a>
+        <a href="#contact" class="nav-cta"><span class="fr">Contact</span><span class="en">Contact</span></a>
       </nav>
+
+      <!-- LANGUAGE TOGGLE -->
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language"><span class="lang-active">FR</span><span class="lang-sep">|</span><span>EN</span></button>
 
       <!-- HAMBURGER : Menu pour mobile (3 petites barres) -->
       <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
@@ -194,7 +252,7 @@
   <section class="hero" id="hero">
     <!-- Couche 1 : Image de fond -->
     <div class="hero-bg">
-      <img src="images/1F6AD0A5-B0DD-4F09-9FD2-F661F4FE2F93.PNG" alt="Pont Alassane Ouattara - Abidjan, Cote d'Ivoire">
+      <img src="images/1F6AD0A5-B0DD-4F09-9FD2-F661F4FE2F93.PNG" alt="Pont Alassane Ouattara - Abidjan, Côte d'Ivoire">
     </div>
     <!-- Couche 2 : Voile sombre -->
     <div class="hero-overlay"></div>
@@ -202,29 +260,29 @@
     <!-- Couche 3 : Contenu textuel -->
     <div class="container">
       <div class="hero-content">
-        <!-- Petit texte au-dessus du titre -->
-        <div class="hero-tag">
-          <span class="hero-tag-line"></span>
-          Cabinet de Conseil RH Premium
-        </div>
+        <!-- Nom du cabinet en grand -->
+        <h1>AXECONSULTING <span class="highlight">RH</span></h1>
 
-        <!-- TITRE PRINCIPAL (H1 = le titre le plus important pour Google) -->
-        <h1>Structurer.<br><span class="highlight">Recruter.</span><br>Performer.</h1>
-
-        <!-- Sous-titre -->
-        <p class="hero-subtitle">Recrutement sur mesure et accompagnement strategique de la diaspora ivoirienne dans la creation d'entreprise a distance.</p>
+        <!-- Sous-titre descriptif -->
+        <p class="hero-subtitle"><span class="fr">Cabinet de conseil &amp; expertise RH en Côte d'Ivoire</span><span class="en">HR Consulting &amp; Expertise Firm in Ivory Coast</span></p>
 
         <!-- Texte d'appui -->
-        <p class="hero-desc">AXECONSULTING RH accompagne les entreprises et investisseurs avec rigueur, methode et vision strategique.</p>
+        <p class="hero-desc"><span class="fr">Nous accompagnons les PME, PMI et la diaspora dans leur structuration, leur recrutement et la création d'entreprise.</span><span class="en">We support SMEs and the diaspora in their structuring, recruitment, and business creation.</span></p>
+
+        <!-- Tagline strategique -->
+        <div class="hero-tag">
+          <span class="hero-tag-line"></span>
+          <span class="fr">Performance &ndash; Structuration &ndash; Excellence opérationnelle</span><span class="en">Performance &ndash; Structuring &ndash; Operational Excellence</span>
+        </div>
 
         <!-- Boutons d'action -->
         <div class="hero-buttons">
           <a href="#contact" class="btn btn-primary">
-            Contactez-nous
+            <span class="fr">Prendre rendez-vous</span><span class="en">Book an Appointment</span>
             <svg width="16" height="16"><use href="#icon-arrow-right"/></svg>
           </a>
-          <a href="#services" class="btn btn-outline-white">
-            Decouvrir nos services
+          <a href="#contact" class="btn btn-outline-white">
+            <span class="fr">Demander un diagnostic</span><span class="en">Request a Diagnostic</span>
           </a>
         </div>
 
@@ -251,31 +309,337 @@
   -->
   <section class="pillars">
     <div class="container">
+      <div class="pillars-title rv">
+        <h2><span class="fr">Pourquoi choisir AXE CONSULTING RH ?</span><span class="en">Why Choose AXE CONSULTING RH?</span></h2>
+      </div>
       <div class="pillars-grid">
         <!-- Pilier 1 -->
         <div class="pillar rv">
           <div class="pillar-icon">
             <svg><use href="#icon-globe"/></svg>
           </div>
-          <h3>Expertise Internationale</h3>
-          <p>Une vision globale et une experience forgee entre Paris et Abidjan au service de votre reussite.</p>
+          <h3><span class="fr">Expertise Internationale</span><span class="en">International Expertise</span></h3>
+          <p><span class="fr">10 ans d'expérience en multinationales, une vision globale forgée entre Paris et Abidjan au service des PME, PMI et de la diaspora.</span><span class="en">10 years of multinational experience, a global vision forged between Paris and Abidjan serving SMEs and the diaspora.</span></p>
         </div>
         <!-- Pilier 2 -->
         <div class="pillar rv">
           <div class="pillar-icon">
             <svg><use href="#icon-layers"/></svg>
           </div>
-          <h3>Accompagnement Structure</h3>
-          <p>Une methodologie rigoureuse et un suivi personnalise a chaque etape de votre projet.</p>
+          <h3><span class="fr">Structuration &amp; Méthode</span><span class="en">Structuring &amp; Methodology</span></h3>
+          <p><span class="fr">Des méthodes éprouvées, une approche rigoureuse et un suivi personnalisé à chaque étape de votre projet.</span><span class="en">Proven methods, a rigorous approach, and personalized support at every stage of your project.</span></p>
         </div>
         <!-- Pilier 3 -->
         <div class="pillar rv">
           <div class="pillar-icon">
-            <svg><use href="#icon-award"/></svg>
+            <svg><use href="#icon-target"/></svg>
           </div>
-          <h3>Exigence &amp; Performance</h3>
-          <p>Des standards eleves et des resultats mesurables pour une croissance durable.</p>
+          <h3><span class="fr">Excellence Opérationnelle</span><span class="en">Operational Excellence</span></h3>
+          <p><span class="fr">Des standards élevés, des résultats mesurables et un engagement constant envers la performance durable.</span><span class="en">High standards, measurable results, and a constant commitment to sustainable performance.</span></p>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+    ============================================================
+    SECTION SERVICES - MINI-NAVIGATION
+    ============================================================
+    3 cartes cliquables qui menent vers les sections detaillees
+    ============================================================
+  -->
+  <section class="services-nav" id="services">
+    <div class="container">
+      <div class="section-label rv">
+        <span class="label-line"></span>
+        <span><span class="fr">Nos Services</span><span class="en">Our Services</span></span>
+      </div>
+      <div class="section-head rv">
+        <h2><span class="fr">Des solutions stratégiques pour votre croissance</span><span class="en">Strategic Solutions for Your Growth</span></h2>
+        <p><span class="fr">Découvrez nos prestations conçues pour répondre aux besoins des entreprises et de la diaspora ivoirienne.</span><span class="en">Discover our services designed to meet the needs of businesses and the Ivorian diaspora.</span></p>
+      </div>
+
+      <div class="srv-nav-grid">
+        <!-- Carte 1 : Recrutement -->
+        <a href="#recrutement" class="srv-nav-card rv">
+          <div class="srv-nav-icon">
+            <svg><use href="#icon-users"/></svg>
+          </div>
+          <h3><span class="fr">Recrutement sur mesure</span><span class="en">Custom Recruitment</span></h3>
+          <p><span class="fr">Nous identifions et sélectionnons les meilleurs talents pour vos PME et PMI.</span><span class="en">We identify and select the best talents for your SMEs.</span></p>
+          <span class="srv-nav-link">
+            <span class="fr">Découvrir</span><span class="en">Learn More</span>
+            <svg><use href="#icon-arrow-right"/></svg>
+          </span>
+        </a>
+
+        <!-- Carte 2 : Creation d'entreprise -->
+        <a href="#creation" class="srv-nav-card rv">
+          <div class="srv-nav-icon">
+            <svg><use href="#icon-building"/></svg>
+          </div>
+          <h3><span class="fr">Création d'entreprise à distance</span><span class="en">Remote Business Creation</span></h3>
+          <p><span class="fr">Créez votre société en Côte d'Ivoire depuis l'étranger, 100% en ligne.</span><span class="en">Create your company in Ivory Coast from abroad, 100% online.</span></p>
+          <span class="srv-nav-link">
+            <span class="fr">Découvrir</span><span class="en">Learn More</span>
+            <svg><use href="#icon-arrow-right"/></svg>
+          </span>
+        </a>
+
+        <!-- Carte 3 : Gestion administrative -->
+        <a href="#gestion" class="srv-nav-card rv">
+          <div class="srv-nav-icon">
+            <svg><use href="#icon-briefcase"/></svg>
+          </div>
+          <h3><span class="fr">Gestion administrative &amp; Conseil RH</span><span class="en">Administrative Management &amp; HR Consulting</span></h3>
+          <p><span class="fr">Structurez et optimisez la gestion de votre entreprise avec nos experts.</span><span class="en">Structure and optimize your business management with our experts.</span></p>
+          <span class="srv-nav-link">
+            <span class="fr">Découvrir</span><span class="en">Learn More</span>
+            <svg><use href="#icon-arrow-right"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+    ============================================================
+    SECTION SERVICES - RECRUTEMENT SUR MESURE
+    ============================================================
+  -->
+  <section class="service-detail" id="recrutement">
+    <div class="container">
+      <div class="section-label rv">
+        <span class="label-line"></span>
+        <span><span class="fr">Recrutement sur mesure</span><span class="en">Custom Recruitment</span></span>
+      </div>
+
+      <!-- En-tete du service -->
+      <div class="sd-header rv">
+        <div class="sd-icon-wrap">
+          <svg><use href="#icon-users"/></svg>
+        </div>
+        <h2><span class="fr">Recrutement sur mesure pour PME &amp; PMI en Côte d'Ivoire</span><span class="en">Custom Recruitment for SMEs in Ivory Coast</span></h2>
+      </div>
+
+      <div class="sd-intro rv">
+        <p><span class="fr">Dans un environnement économique en constante évolution, recruter le bon talent n'est plus un luxe, c'est une <strong>nécessité stratégique</strong>.</span><span class="en">In an ever-changing economic environment, recruiting the right talent is no longer a luxury, it's a <strong>strategic necessity</strong>.</span></p>
+        <p><span class="fr">Chez AXE CONSULTING RH, nous accompagnons les PME et PMI ivoiriennes dans le recrutement de profils performants, fiables et adaptés à leur culture d'entreprise.</span><span class="en">At AXE CONSULTING RH, we support Ivorian SMEs in recruiting high-performing, reliable profiles adapted to their corporate culture.</span></p>
+      </div>
+
+      <!-- Pourquoi nous faire confiance -->
+      <div class="sd-block sd-block-highlight rv">
+        <h3><span class="fr">Pourquoi nous faire confiance ?</span><span class="en">Why Trust Us?</span></h3>
+        <p><span class="fr">Forte de 10 ans d'expérience en multinationales, j'ai évolué au sein d'environnements exigeants où la performance, la rigueur et l'excellence opérationnelle sont la norme.</span><span class="en">With 10 years of experience in multinationals, I have worked in demanding environments where performance, rigor, and operational excellence are the norm.</span></p>
+        <p><span class="fr">Cette expertise internationale me permet aujourd'hui d'apporter aux entreprises locales des méthodes structurées, modernes et efficaces.</span><span class="en">This international expertise now enables me to bring structured, modern, and effective methods to local businesses.</span></p>
+        <p class="sd-emphasis"><span class="fr">Nous ne recrutons pas simplement un CV.<br>Nous recrutons un potentiel, une personnalité, un impact futur.</span><span class="en">We don't simply recruit a resume.<br>We recruit potential, personality, and future impact.</span></p>
+      </div>
+
+      <!-- Grille 2 colonnes : Approche + Cibles -->
+      <div class="sd-grid rv">
+        <!-- Notre approche -->
+        <div class="sd-card">
+          <h3><svg><use href="#icon-layers"/></svg> <span class="fr">Notre approche</span><span class="en">Our Approach</span></h3>
+          <ul class="sd-list">
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Analyse approfondie du besoin et du contexte</span><span class="en">In-depth analysis of needs and context</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Définition précise du profil recherché</span><span class="en">Precise definition of the required profile</span></li>
+            <li><svg><use href="#icon-search"/></svg><span class="fr">Sourcing ciblé (réseau national &amp; international)</span><span class="en">Targeted sourcing (national &amp; international network)</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Évaluation rigoureuse des compétences et soft skills</span><span class="en">Rigorous assessment of skills and soft skills</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Présentation de candidats qualifiés et opérationnels</span><span class="en">Presentation of qualified and operational candidates</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Suivi post-intégration</span><span class="en">Post-integration follow-up</span></li>
+          </ul>
+        </div>
+
+        <!-- Nos cibles -->
+        <div class="sd-card">
+          <h3><svg><use href="#icon-briefcase"/></svg> <span class="fr">Nos cibles</span><span class="en">Our Targets</span></h3>
+          <ul class="sd-list sd-list-bullets">
+            <li><span class="fr">PME en croissance</span><span class="en">Growing SMEs</span></li>
+            <li><span class="fr">PMI industrielles</span><span class="en">Industrial SMIs</span></li>
+            <li><span class="fr">Startups ambitieuses</span><span class="en">Ambitious Startups</span></li>
+            <li><span class="fr">Entreprises en structuration RH</span><span class="en">Companies structuring their HR</span></li>
+          </ul>
+
+          <div class="sd-promise">
+            <h4><span class="fr">Notre promesse</span><span class="en">Our Promise</span></h4>
+            <p><span class="fr">Vous faire gagner du temps, sécuriser vos recrutements et contribuer durablement à votre performance.</span><span class="en">Save you time, secure your recruitment, and sustainably contribute to your performance.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="sd-cta rv">
+        <p><span class="fr">Vous recrutez ? Confiez-nous votre besoin et bénéficiez d'un accompagnement professionnel, confidentiel et sur mesure.</span><span class="en">Are you recruiting? Entrust us with your needs and benefit from professional, confidential, and tailored support.</span></p>
+        <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20le%20recrutement%20sur%20mesure." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <span class="fr">Confiez-nous votre recrutement</span><span class="en">Entrust Us with Your Recruitment</span>
+          <svg width="16" height="16"><use href="#icon-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+    ============================================================
+    SECTION SERVICES - CREATION D'ENTREPRISE
+    ============================================================
+  -->
+  <section class="service-detail service-detail-alt" id="creation">
+    <div class="container">
+      <div class="section-label rv">
+        <span class="label-line"></span>
+        <span><span class="fr">Création d'entreprise</span><span class="en">Business Creation</span></span>
+      </div>
+
+      <!-- En-tete du service -->
+      <div class="sd-header rv">
+        <div class="sd-icon-wrap">
+          <svg><use href="#icon-building"/></svg>
+        </div>
+        <h2><span class="fr">Création d'entreprise en Côte d'Ivoire &ndash; 100% à distance pour la diaspora</span><span class="en">Business Creation in Ivory Coast &ndash; 100% Remote for the Diaspora</span></h2>
+      </div>
+
+      <div class="sd-intro rv">
+        <p><span class="fr">Vous vivez à l'étranger et souhaitez créer votre entreprise en Côte d'Ivoire ?</span><span class="en">Do you live abroad and wish to start your business in Ivory Coast?</span></p>
+        <p><span class="fr">AXE CONSULTING RH vous accompagne dans la <strong>création complète de votre société</strong>, sans que vous ayez à vous déplacer.</span><span class="en">AXE CONSULTING RH supports you in the <strong>complete creation of your company</strong>, without you having to travel.</span></p>
+        <p><span class="fr">Nous prenons en charge l'ensemble des démarches administratives, juridiques et fiscales pour vous permettre d'investir sereinement dans votre pays.</span><span class="en">We handle all administrative, legal, and tax procedures to allow you to invest confidently in your country.</span></p>
+      </div>
+
+      <!-- Grille 2 colonnes : Cible + Services -->
+      <div class="sd-grid rv">
+        <!-- A qui s'adresse cette prestation -->
+        <div class="sd-card">
+          <h3><svg><use href="#icon-globe"/></svg> <span class="fr">À qui s'adresse cette prestation ?</span><span class="en">Who Is This Service For?</span></h3>
+          <ul class="sd-list sd-list-bullets">
+            <li><span class="fr">Ivoiriens résidant en Europe, Amérique, Afrique, Moyen-Orient</span><span class="en">Ivorians living in Europe, America, Africa, Middle East</span></li>
+            <li><span class="fr">Entrepreneurs de la diaspora souhaitant investir en Côte d'Ivoire</span><span class="en">Diaspora entrepreneurs wishing to invest in Ivory Coast</span></li>
+            <li><span class="fr">Salariés souhaitant lancer une activité en parallèle</span><span class="en">Employees wishing to start a side business</span></li>
+            <li><span class="fr">Investisseurs souhaitant structurer leur projet</span><span class="en">Investors looking to structure their project</span></li>
+          </ul>
+        </div>
+
+        <!-- Nos services incluent -->
+        <div class="sd-card">
+          <h3><svg><use href="#icon-briefcase"/></svg> <span class="fr">Nos services incluent</span><span class="en">Our Services Include</span></h3>
+          <ul class="sd-list">
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Choix de la forme juridique adaptée</span><span class="en">Choice of the appropriate legal form</span></li>
+            <li><svg><use href="#icon-file-text"/></svg><span class="fr">Rédaction des statuts</span><span class="en">Drafting of articles of incorporation</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Immatriculation via le Centre de Promotion des Investissements en Côte d'Ivoire</span><span class="en">Registration via the Investment Promotion Center in Ivory Coast</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Obtention du RCCM</span><span class="en">Obtaining the RCCM (Trade Registry)</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Déclaration fiscale et accompagnement DGI</span><span class="en">Tax declaration and DGI support</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Conseils stratégiques pour un démarrage structuré</span><span class="en">Strategic advice for a structured launch</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Assistance pour l'ouverture de compte bancaire professionnel</span><span class="en">Assistance for professional bank account opening</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 100% digital -->
+      <div class="sd-block sd-block-highlight rv">
+        <h3><svg><use href="#icon-shield-check"/></svg> <span class="fr">100% digital &ndash; 100% sécurisé</span><span class="en">100% Digital &ndash; 100% Secure</span></h3>
+        <p><span class="fr">Toutes les démarches sont effectuées à distance avec :</span><span class="en">All procedures are carried out remotely with:</span></p>
+        <ul class="sd-list sd-list-inline">
+          <li><span class="fr">Signature électronique</span><span class="en">Electronic signature</span></li>
+          <li><span class="fr">Transmission sécurisée des documents</span><span class="en">Secure document transmission</span></li>
+          <li><span class="fr">Suivi en temps réel</span><span class="en">Real-time monitoring</span></li>
+          <li><span class="fr">Reporting clair et transparent</span><span class="en">Clear and transparent reporting</span></li>
+        </ul>
+      </div>
+
+      <!-- Pourquoi nous -->
+      <div class="sd-block rv">
+        <h3><span class="fr">Pourquoi nous faire confiance ?</span><span class="en">Why Trust Us?</span></h3>
+        <p><span class="fr">Forte de 10 ans d'expérience en multinationales, j'accompagne les entrepreneurs avec rigueur, méthode et vision stratégique.</span><span class="en">With 10 years of multinational experience, I support entrepreneurs with rigor, method, and strategic vision.</span></p>
+        <p class="sd-emphasis"><span class="fr">Nous ne faisons pas que créer votre entreprise.<br>Nous vous aidons à poser des bases solides pour une croissance durable.</span><span class="en">We don't just create your business.<br>We help you lay solid foundations for sustainable growth.</span></p>
+      </div>
+
+      <!-- CTA -->
+      <div class="sd-cta rv">
+        <p><span class="fr">Vous souhaitez entreprendre depuis l'étranger ? Confiez-nous votre projet et lancez votre entreprise en Côte d'Ivoire en toute sérénité.</span><span class="en">Want to start a business from abroad? Entrust us with your project and launch your company in Ivory Coast with complete peace of mind.</span></p>
+        <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20la%20cr%C3%A9ation%20d%27entreprise%20%C3%A0%20distance." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <span class="fr">Prenez rendez-vous pour un premier échange</span><span class="en">Book a First Consultation</span>
+          <svg width="16" height="16"><use href="#icon-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+    ============================================================
+    SECTION SERVICES - GESTION ADMINISTRATIVE & CONSEIL
+    ============================================================
+  -->
+  <section class="service-detail" id="gestion">
+    <div class="container">
+      <div class="section-label rv">
+        <span class="label-line"></span>
+        <span><span class="fr">Gestion administrative</span><span class="en">Administrative Management</span></span>
+      </div>
+
+      <!-- En-tete du service -->
+      <div class="sd-header rv">
+        <div class="sd-icon-wrap">
+          <svg><use href="#icon-briefcase"/></svg>
+        </div>
+        <h2><span class="fr">Gestion administrative &amp; Conseil stratégique pour PME/PMI en Côte d'Ivoire</span><span class="en">Administrative Management &amp; Strategic Consulting for SMEs in Ivory Coast</span></h2>
+      </div>
+
+      <div class="sd-intro rv">
+        <p><span class="fr">Diriger une PME ou une PMI demande du temps, de la rigueur et une organisation solide.</span><span class="en">Managing an SME requires time, rigor, and solid organization.</span></p>
+        <p><span class="fr">Pourtant, de nombreux dirigeants se retrouvent débordés par la gestion administrative, les obligations légales et le manque de structuration interne.</span><span class="en">Yet many managers find themselves overwhelmed by administrative management, legal obligations, and lack of internal structuring.</span></p>
+        <p><span class="fr">AXE CONSULTING RH accompagne les entreprises ivoiriennes dans la mise en place d'une <strong>organisation administrative efficace, conforme et performante</strong>.</span><span class="en">AXE CONSULTING RH supports Ivorian companies in establishing an <strong>efficient, compliant, and high-performing administrative organization</strong>.</span></p>
+      </div>
+
+      <!-- Mission -->
+      <div class="sd-block sd-block-highlight rv">
+        <h3><span class="fr">Notre mission</span><span class="en">Our Mission</span></h3>
+        <p><span class="fr">Vous permettre de vous concentrer sur votre c&oelig;ur d'activité pendant que nous structurons et sécurisons votre gestion administrative.</span><span class="en">Allow you to focus on your core business while we structure and secure your administrative management.</span></p>
+      </div>
+
+      <!-- Grille 2 colonnes : Domaines + Pour qui -->
+      <div class="sd-grid rv">
+        <!-- Domaines d'intervention -->
+        <div class="sd-card">
+          <h3><svg><use href="#icon-rocket"/></svg> <span class="fr">Nos domaines d'intervention</span><span class="en">Our Areas of Expertise</span></h3>
+          <ul class="sd-list">
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Organisation et optimisation administrative</span><span class="en">Administrative organization and optimization</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Mise en place de procédures internes</span><span class="en">Implementation of internal procedures</span></li>
+            <li><svg><use href="#icon-file-text"/></svg><span class="fr">Structuration des dossiers du personnel</span><span class="en">Structuring of personnel files</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Conformité sociale et administrative</span><span class="en">Social and administrative compliance</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Suivi des obligations auprès de la Caisse Nationale de Prévoyance Sociale</span><span class="en">Monitoring of obligations with the National Social Insurance Fund</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Accompagnement fiscal et relation avec la Direction Générale des Impôts</span><span class="en">Tax support and liaison with the General Tax Directorate</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Conseil en gestion RH et organisation interne</span><span class="en">HR management consulting and internal organization</span></li>
+            <li><svg><use href="#icon-check"/></svg><span class="fr">Appui à la croissance et à la formalisation</span><span class="en">Support for growth and formalization</span></li>
+          </ul>
+        </div>
+
+        <!-- Pour qui -->
+        <div class="sd-card">
+          <h3><svg><use href="#icon-users"/></svg> <span class="fr">Pour qui ?</span><span class="en">Who Is It For?</span></h3>
+          <ul class="sd-list sd-list-bullets">
+            <li><span class="fr">PME en phase de croissance</span><span class="en">SMEs in growth phase</span></li>
+            <li><span class="fr">PMI industrielles</span><span class="en">Industrial SMIs</span></li>
+            <li><span class="fr">Entreprises familiales en structuration</span><span class="en">Family businesses in structuring phase</span></li>
+            <li><span class="fr">Dirigeants souhaitant professionnaliser leur organisation</span><span class="en">Managers looking to professionalize their organization</span></li>
+          </ul>
+
+          <div class="sd-promise">
+            <h4><span class="fr">Notre valeur ajoutée</span><span class="en">Our Added Value</span></h4>
+            <p><span class="fr">Avec 10 ans d'expérience en multinationales, nous apportons aux PME ivoiriennes des méthodes éprouvées, une vision stratégique, une culture de performance et une approche rigoureuse et moderne.</span><span class="en">With 10 years of multinational experience, we bring Ivorian SMEs proven methods, strategic vision, a performance culture, and a rigorous modern approach.</span></p>
+            <p class="sd-emphasis"><span class="fr">Nous transformons l'administration en levier de croissance.</span><span class="en">We transform administration into a growth lever.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="sd-cta rv">
+        <p><span class="fr">Vous souhaitez structurer votre entreprise ? Un diagnostic organisationnel peut faire toute la différence.</span><span class="en">Want to structure your business? An organizational diagnostic can make all the difference.</span></p>
+        <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20la%20gestion%20administrative%20et%20le%20conseil%20strat%C3%A9gique." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <span class="fr">Contactez-nous pour un échange stratégique</span><span class="en">Contact Us for a Strategic Discussion</span>
+          <svg width="16" height="16"><use href="#icon-arrow-right"/></svg>
+        </a>
       </div>
     </div>
   </section>
@@ -286,8 +650,6 @@
     SECTION "QUI SOMMES-NOUS"
     ============================================================
     Photo de la fondatrice a gauche + texte a droite.
-    On utilise CSS Grid pour mettre les 2 cote a cote.
-    Sur telephone, ils se mettent l'un sous l'autre.
     ============================================================
   -->
   <section class="about" id="about">
@@ -295,7 +657,7 @@
       <!-- Petit titre de section -->
       <div class="section-label rv">
         <span class="label-line"></span>
-        <span>Qui sommes-nous</span>
+        <span><span class="fr">Qui sommes-nous</span><span class="en">About Us</span></span>
       </div>
 
       <div class="about-grid">
@@ -306,116 +668,28 @@
             <div class="about-photo-accent"></div>
           </div>
           <div class="about-photo-name">
-            <strong>La Fondatrice</strong>
+            <strong><span class="fr">La Fondatrice</span><span class="en">The Founder</span></strong>
             <span>Axelle SEA</span>
           </div>
         </div>
 
         <!-- Colonne droite : Texte de presentation -->
         <div class="about-text-col rv">
-          <h2>Un cabinet ne d'une conviction forte</h2>
+          <h2><span class="fr">Un cabinet né d'une conviction forte</span><span class="en">A Firm Born from a Strong Conviction</span></h2>
 
           <div class="about-paragraphs">
-            <p>Titulaire d'un Master II en Management des Ressources Humaines obtenu au sein d'une ecole de commerce parisienne, j'ai construit mon expertise au sein de grandes entreprises francaises ainsi que dans une entreprise de premier plan a Abidjan.</p>
+            <p><span class="fr">Titulaire d'un Master II en Management des Ressources Humaines obtenu au sein d'une école de commerce parisienne, j'ai construit mon expertise au sein de grandes entreprises françaises ainsi que dans une entreprise de premier plan à Abidjan.</span><span class="en">Holding a Master's II in Human Resources Management from a Parisian business school, I built my expertise within major French companies as well as a leading company in Abidjan.</span></p>
 
-            <p>Specialiste du recrutement national et international, j'accompagne les organisations avec exigence, methode et engagement.</p>
+            <p><span class="fr">Spécialiste du recrutement national et international, j'accompagne les organisations avec exigence, méthode et engagement.</span><span class="en">A specialist in national and international recruitment, I support organizations with high standards, method, and commitment.</span></p>
 
-            <p class="about-highlight">Fonde en 2020, AXECONSULTING RH est ne d'une conviction forte : la diaspora ivoirienne represente un levier strategique majeur pour le developpement economique du pays.</p>
+            <p class="about-highlight"><span class="fr">Fondé en 2020, AXECONSULTING RH est né d'une conviction forte : la diaspora ivoirienne représente un levier stratégique majeur pour le développement économique du pays.</span><span class="en">Founded in 2020, AXECONSULTING RH was born from a strong conviction: the Ivorian diaspora represents a major strategic lever for the country's economic development.</span></p>
 
-            <p>Structurer, securiser et faciliter la creation d'entreprise a distance est au coeur de notre mission.</p>
+            <p><span class="fr">Structurer, sécuriser et faciliter la création d'entreprise à distance est au c&oelig;ur de notre mission.</span><span class="en">Structuring, securing, and facilitating remote business creation is at the heart of our mission.</span></p>
 
-            <p>Nous accompagnons egalement les PME/PMI dans leurs enjeux de recrutement sur mesure, de gestion administrative et de conseil RH, avec une approche rigoureuse et orientee performance.</p>
+            <p><span class="fr">Nous accompagnons également les PME/PMI dans leurs enjeux de recrutement sur mesure, de gestion administrative et de conseil RH, avec une approche rigoureuse et orientée performance.</span><span class="en">We also support SMEs in their custom recruitment, administrative management, and HR consulting challenges, with a rigorous, performance-oriented approach.</span></p>
 
-            <p class="about-vision">Au-dela des services, notre ambition est claire : contribuer a batir des entreprises solides, durables et creatrices de valeur en Cote d'Ivoire.</p>
+            <p class="about-vision"><span class="fr">Au-delà des services, notre ambition est claire : contribuer à bâtir des entreprises solides, durables et créatrices de valeur en Côte d'Ivoire.</span><span class="en">Beyond services, our ambition is clear: to help build solid, sustainable, and value-creating businesses in Ivory Coast.</span></p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!--
-    ============================================================
-    SECTION SERVICES PREMIUM
-    ============================================================
-    3 cartes elegantes qui presentent les services.
-    Chaque carte a :
-    - Une icone en haut
-    - Un titre
-    - Une description
-    - Une liste de details (cachee au debut)
-    - Un bouton pour voir les details
-
-    "rv" = classe pour l'animation d'apparition au scroll
-    ============================================================
-  -->
-  <section class="services" id="services">
-    <div class="container">
-      <div class="section-label rv">
-        <span class="label-line"></span>
-        <span>Nos Services</span>
-      </div>
-      <div class="section-head rv">
-        <h2>Des solutions strategiques pour votre croissance</h2>
-        <p>Decouvrez nos prestations concues pour repondre aux besoins des entreprises et de la diaspora ivoirienne.</p>
-      </div>
-
-      <div class="srv-grid">
-        <!-- Carte Service 1 : Creation d'entreprise -->
-        <div class="srv-card rv">
-          <div class="srv-icon-wrap">
-            <svg><use href="#icon-building"/></svg>
-          </div>
-          <h3>Creation d'entreprise 100% a distance</h3>
-          <p>Nous prenons en charge la creation complete de votre entreprise en Cote d'Ivoire, depuis l'etranger.</p>
-          <ul class="srv-list">
-            <li><svg><use href="#icon-check"/></svg>Preparation complete du dossier</li>
-            <li><svg><use href="#icon-check"/></svg>Redaction des statuts juridiques</li>
-            <li><svg><use href="#icon-check"/></svg>Immatriculation et extrait RCCM</li>
-            <li><svg><use href="#icon-check"/></svg>Ouverture du compte bancaire professionnel</li>
-          </ul>
-          <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20la%20cr%C3%A9ation%20d%27entreprise." target="_blank" class="srv-link">
-            En savoir plus
-            <svg><use href="#icon-arrow-right"/></svg>
-          </a>
-        </div>
-
-        <!-- Carte Service 2 : Recrutement -->
-        <div class="srv-card rv">
-          <div class="srv-icon-wrap">
-            <svg><use href="#icon-users"/></svg>
-          </div>
-          <h3>Recrutement national &amp; international sur mesure</h3>
-          <p>Nous identifions et selectionnons les meilleurs talents pour repondre a vos besoins specifiques.</p>
-          <ul class="srv-list">
-            <li><svg><use href="#icon-check"/></svg>Analyse des besoins en personnel</li>
-            <li><svg><use href="#icon-check"/></svg>Preselection et entretiens approfondis</li>
-            <li><svg><use href="#icon-check"/></svg>Verification des references</li>
-            <li><svg><use href="#icon-check"/></svg>Suivi d'integration des recrues</li>
-          </ul>
-          <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20le%20recrutement." target="_blank" class="srv-link">
-            En savoir plus
-            <svg><use href="#icon-arrow-right"/></svg>
-          </a>
-        </div>
-
-        <!-- Carte Service 3 : Gestion administrative -->
-        <div class="srv-card rv">
-          <div class="srv-icon-wrap">
-            <svg><use href="#icon-briefcase"/></svg>
-          </div>
-          <h3>Gestion administrative &amp; Conseil RH strategique</h3>
-          <p>Un accompagnement complet pour optimiser votre gestion administrative et vos pratiques RH.</p>
-          <ul class="srv-list">
-            <li><svg><use href="#icon-check"/></svg>Gestion des documents administratifs</li>
-            <li><svg><use href="#icon-check"/></svg>Declarations fiscales et sociales</li>
-            <li><svg><use href="#icon-check"/></svg>Suivi des obligations legales</li>
-            <li><svg><use href="#icon-check"/></svg>Conseil et accompagnement personnalise</li>
-          </ul>
-          <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20la%20gestion%20administrative." target="_blank" class="srv-link">
-            En savoir plus
-            <svg><use href="#icon-arrow-right"/></svg>
-          </a>
         </div>
       </div>
     </div>
@@ -427,44 +701,38 @@
     SECTION DIFFERENCIATION (Statistiques)
     ============================================================
     Section avec fond sombre bleu profond.
-    Affiche des grands chiffres pour impressionner :
-    - Annee de creation
-    - Nombre de diaspora accompagnee
-    - Nombre de PME accompagnees
-
-    Les chiffres s'animent (comptent de 0 a la valeur finale)
-    quand cette section apparait a l'ecran.
+    Affiche des grands chiffres pour impressionner.
     ============================================================
   -->
   <section class="stats" id="stats">
     <div class="container">
       <div class="section-label rv" style="--label-color: rgba(255,255,255,0.5)">
         <span class="label-line" style="background: var(--orange)"></span>
-        <span style="color: rgba(255,255,255,0.7)">Notre Impact</span>
+        <span style="color: rgba(255,255,255,0.7)"><span class="fr">Notre Impact</span><span class="en">Our Impact</span></span>
       </div>
       <div class="stats-head rv">
-        <h2>Des resultats qui parlent d'eux-memes</h2>
+        <h2><span class="fr">Des résultats qui parlent d'eux-mêmes</span><span class="en">Results That Speak for Themselves</span></h2>
       </div>
 
       <div class="stats-grid">
         <div class="stat-item rv">
           <div class="stat-number" data-count="2020" data-suffix="">2020</div>
-          <div class="stat-label">Annee de creation</div>
+          <div class="stat-label"><span class="fr">Année de création</span><span class="en">Year Founded</span></div>
           <div class="stat-bar"></div>
         </div>
         <div class="stat-item rv">
           <div class="stat-number" data-count="150" data-suffix="+">0</div>
-          <div class="stat-label">Diaspora accompagnee</div>
+          <div class="stat-label"><span class="fr">Diaspora accompagnée</span><span class="en">Diaspora Supported</span></div>
           <div class="stat-bar"></div>
         </div>
         <div class="stat-item rv">
           <div class="stat-number" data-count="80" data-suffix="+">0</div>
-          <div class="stat-label">PME accompagnees</div>
+          <div class="stat-label"><span class="fr">PME accompagnées</span><span class="en">SMEs Supported</span></div>
           <div class="stat-bar"></div>
         </div>
         <div class="stat-item rv">
           <div class="stat-number" data-count="98" data-suffix="%">0</div>
-          <div class="stat-label">Taux de satisfaction</div>
+          <div class="stat-label"><span class="fr">Taux de satisfaction</span><span class="en">Satisfaction Rate</span></div>
           <div class="stat-bar"></div>
         </div>
       </div>
@@ -490,35 +758,40 @@
     <div class="container">
       <div class="section-label rv">
         <span class="label-line"></span>
-        <span>Contact</span>
+        <span><span class="fr">Contact</span><span class="en">Contact</span></span>
       </div>
       <div class="section-head rv">
-        <h2>Echangeons sur votre projet</h2>
-        <p>Prenez contact avec notre equipe pour discuter de vos besoins et decouvrir comment nous pouvons vous accompagner.</p>
+        <h2><span class="fr">Échangeons sur votre projet</span><span class="en">Let's Discuss Your Project</span></h2>
+        <p><span class="fr">Prenez contact avec notre équipe pour discuter de vos besoins et découvrir comment nous pouvons vous accompagner.</span><span class="en">Get in touch with our team to discuss your needs and discover how we can support you.</span></p>
       </div>
 
       <div class="contact-grid">
         <!-- Colonne gauche : Formulaire -->
         <div class="contact-form-wrap rv">
-          <form class="contact-form" id="contactForm">
+          <form class="contact-form" id="contactForm" autocomplete="off">
             <div class="form-group">
-              <label for="name">Nom complet</label>
-              <input type="text" id="name" name="name" placeholder="Votre nom" required>
+              <label for="name"><span class="fr">Nom complet</span><span class="en">Full Name</span></label>
+              <input type="text" id="name" name="name" placeholder="Votre nom" required maxlength="100">
             </div>
             <div class="form-group">
-              <label for="email">Adresse email</label>
-              <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+              <label for="email"><span class="fr">Adresse email</span><span class="en">Email Address</span></label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required maxlength="254">
             </div>
             <div class="form-group">
-              <label for="phone">Telephone</label>
-              <input type="tel" id="phone" name="phone" placeholder="+225 XX XX XX XX XX">
+              <label for="phone"><span class="fr">Téléphone</span><span class="en">Phone</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="+225 XX XX XX XX XX" maxlength="20" pattern="[\+]?[0-9\s\-]{7,20}">
+            </div>
+            <!-- Honeypot anti-spam field -->
+            <div class="form-group" style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
             </div>
             <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Decrivez votre projet ou votre besoin..." required></textarea>
+              <label for="message"><span class="fr">Message</span><span class="en">Message</span></label>
+              <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet ou votre besoin..." required maxlength="2000"></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-full">
-              Envoyer le message
+              <span class="fr">Envoyer le message</span><span class="en">Send Message</span>
               <svg width="16" height="16"><use href="#icon-arrow-right"/></svg>
             </button>
           </form>
@@ -527,14 +800,14 @@
         <!-- Colonne droite : Coordonnees -->
         <div class="contact-info-wrap rv">
           <div class="contact-info-card">
-            <h3>Nos coordonnees</h3>
+            <h3><span class="fr">Nos coordonnées</span><span class="en">Our Contact Info</span></h3>
             <div class="contact-info-list">
               <div class="contact-info-item">
                 <div class="contact-info-icon">
                   <svg><use href="#icon-phone"/></svg>
                 </div>
                 <div>
-                  <strong>Telephone</strong>
+                  <strong><span class="fr">Téléphone</span><span class="en">Phone</span></strong>
                   <a href="tel:+2250718676696">+225 07 18 67 66 96</a>
                 </div>
               </div>
@@ -543,7 +816,7 @@
                   <svg><use href="#icon-mail"/></svg>
                 </div>
                 <div>
-                  <strong>Email</strong>
+                  <strong><span class="fr">Email</span><span class="en">Email</span></strong>
                   <a href="mailto:axeconsulting@outlook.fr">axeconsulting@outlook.fr</a>
                 </div>
               </div>
@@ -552,8 +825,8 @@
                   <svg><use href="#icon-map"/></svg>
                 </div>
                 <div>
-                  <strong>Adresse</strong>
-                  <span>Abidjan, Cote d'Ivoire</span>
+                  <strong><span class="fr">Adresse</span><span class="en">Address</span></strong>
+                  <span><span class="fr">Abidjan, Côte d'Ivoire</span><span class="en">Abidjan, Ivory Coast</span></span>
                 </div>
               </div>
               <div class="contact-info-item">
@@ -568,9 +841,9 @@
             </div>
 
             <!-- Bouton WhatsApp -->
-            <a href="https://wa.me/2250718676696" target="_blank" class="btn btn-wa btn-full">
+            <a href="https://wa.me/2250718676696" target="_blank" rel="noopener noreferrer" class="btn btn-wa btn-full">
               <svg width="18" height="18" fill="white"><use href="#wa"/></svg>
-              Ecrire sur WhatsApp
+              <span class="fr">Écrire sur WhatsApp</span><span class="en">Message on WhatsApp</span>
             </a>
           </div>
         </div>
@@ -599,34 +872,34 @@
             <img src="images/logo.jpg" alt="AXECONSULTING RH" class="footer-logo-img">
             <span class="footer-logo-text">AXECONSULTING <span>RH</span></span>
           </div>
-          <p>Cabinet specialise dans l'accompagnement de la diaspora ivoirienne pour la creation d'entreprise, le recrutement et la gestion administrative.</p>
+          <p><span class="fr">Cabinet spécialisé dans l'accompagnement de la diaspora ivoirienne pour la création d'entreprise, le recrutement et la gestion administrative.</span><span class="en">A firm specialized in supporting the Ivorian diaspora for business creation, recruitment, and administrative management.</span></p>
         </div>
 
         <!-- Colonne 2 : Navigation -->
         <div>
-          <h4>Navigation</h4>
+          <h4><span class="fr">Navigation</span><span class="en">Navigation</span></h4>
           <ul class="footer-links">
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">Qui sommes-nous</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#"><span class="fr">Accueil</span><span class="en">Home</span></a></li>
+            <li><a href="#services"><span class="fr">Services</span><span class="en">Services</span></a></li>
+            <li><a href="#about"><span class="fr">Qui sommes-nous</span><span class="en">About Us</span></a></li>
+            <li><a href="#contact"><span class="fr">Contact</span><span class="en">Contact</span></a></li>
           </ul>
         </div>
 
         <!-- Colonne 3 : Services -->
         <div>
-          <h4>Services</h4>
+          <h4><span class="fr">Services</span><span class="en">Services</span></h4>
           <ul class="footer-links">
-            <li><a href="#services">Creation d'entreprise</a></li>
-            <li><a href="#services">Recrutement sur mesure</a></li>
-            <li><a href="#services">Gestion administrative</a></li>
-            <li><a href="#services">Conseil RH</a></li>
+            <li><a href="#recrutement"><span class="fr">Recrutement sur mesure</span><span class="en">Custom Recruitment</span></a></li>
+            <li><a href="#creation"><span class="fr">Création d'entreprise</span><span class="en">Business Creation</span></a></li>
+            <li><a href="#gestion"><span class="fr">Gestion administrative</span><span class="en">Administrative Management</span></a></li>
+            <li><a href="#gestion"><span class="fr">Conseil RH stratégique</span><span class="en">Strategic HR Consulting</span></a></li>
           </ul>
         </div>
 
         <!-- Colonne 4 : Contact -->
         <div>
-          <h4>Contact</h4>
+          <h4><span class="fr">Contact</span><span class="en">Contact</span></h4>
           <div class="footer-contact-item">
             <svg><use href="#icon-phone"/></svg>
             <a href="tel:+2250718676696">+225 07 18 67 66 96</a>
@@ -637,7 +910,7 @@
           </div>
           <div class="footer-contact-item">
             <svg><use href="#icon-map"/></svg>
-            <span>Abidjan, Cote d'Ivoire</span>
+            <span><span class="fr">Abidjan, Côte d'Ivoire</span><span class="en">Abidjan, Ivory Coast</span></span>
           </div>
           <div class="footer-contact-item">
             <svg fill="currentColor"><use href="#icon-facebook"/></svg>
@@ -648,13 +921,15 @@
 
       <!-- Barre de copyright tout en bas -->
       <div class="footer-bottom">
-        <span>&copy; 2026 AXECONSULTING RH &mdash; Tous droits reserves</span>
-        <span>Facebook : SEA MULTISERVICES CI</span>
+        <span>&copy; 2026 AXECONSULTING RH &mdash; <span class="fr">Tous droits réservés</span><span class="en">All rights reserved</span></span>
+        <span><span class="fr">Retrouvez-nous sur Facebook</span><span class="en">Find us on Facebook</span> : SEA MULTISERVICES CI</span>
       </div>
     </div>
   </footer>
 
   <!-- JAVASCRIPT : Le fichier qui ajoute les animations et interactions -->
   <script src="js/main.js"></script>
+
+  <!-- Le systeme bilingue complet est gere dans js/main.js (section 7) -->
 </body>
 </html>

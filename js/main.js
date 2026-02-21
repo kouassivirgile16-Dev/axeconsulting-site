@@ -14,7 +14,9 @@
    2. L'effet du header au scroll
    3. Les animations d'apparition au scroll
    4. Le compteur anime des statistiques
-   5. Le formulaire de contact
+   5. Le formulaire de contact (avec securite)
+   6. La navigation active au scroll
+   7. Le systeme de changement de langue (FR/EN)
 
    VOCABULAIRE CLE :
    - document     = la page web entiere
@@ -25,6 +27,7 @@
    - classList.add()    = ajoute une classe
    - classList.remove() = enleve une classe
    - classList.toggle() = ajoute si absente, enleve si presente
+   - localStorage  = memoire du navigateur (persiste apres fermeture)
 ======================================== */
 
 
@@ -206,20 +209,85 @@ function animateCounters() {
 
 
 /* =============================================
-   5. FORMULAIRE DE CONTACT
+   5. FORMULAIRE DE CONTACT (avec securite)
    =============================================
    Quand l'utilisateur soumet le formulaire :
-   1. On empeche l'envoi par defaut (preventDefault)
-   2. On recupere les donnees saisies
-   3. On ouvre WhatsApp avec un message pre-rempli
-      contenant les infos du formulaire
-   4. On remet le formulaire a zero
+   1. On verifie le champ piege (honeypot anti-bot)
+   2. On verifie le delai entre deux envois (anti-spam)
+   3. On nettoie les donnees saisies (anti-injection)
+   4. On valide l'email et le telephone
+   5. On verifie les longueurs maximales
+   6. Si tout est bon, on ouvre WhatsApp
+   7. On remet le formulaire a zero
 
-   C'est une solution simple qui ne necessite
-   pas de serveur ! Le message est envoye
-   directement sur WhatsApp.
+   SECURITE :
+   - sanitizeInput() : empeche l'injection de code HTML
+   - isValidEmail()  : verifie le format de l'email
+   - isValidPhone()  : verifie le format du telephone
+   - honeypot        : champ cache que seuls les bots remplissent
+   - rate limiting   : empeche l'envoi trop frequent
 ============================================= */
 
+// --- Fonctions utilitaires de securite ---
+
+/**
+ * sanitizeInput - Nettoie une chaine pour empecher l'injection HTML
+ *
+ * EXPLICATION POUR DEBUTANT :
+ * Si quelqu'un ecrit <script>alert('hack')</script> dans un champ,
+ * cette fonction transforme les < et > en caracteres inoffensifs
+ * (&lt; et &gt;) pour que le code ne s'execute JAMAIS.
+ *
+ * Astuce : on cree un element texte dans le DOM, puis on lit
+ * son innerHTML, ce qui echappe automatiquement les caracteres dangereux.
+ */
+function sanitizeInput(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
+/**
+ * isValidEmail - Verifie qu'une adresse email a le bon format
+ *
+ * EXPLICATION POUR DEBUTANT :
+ * Une regex (expression reguliere) est un "motif" de texte.
+ * Celle-ci verifie qu'il y a :
+ * - quelque chose avant le @
+ * - un @
+ * - quelque chose apres le @
+ * - un point
+ * - quelque chose apres le point
+ *
+ * Exemples valides : nom@email.com, a@b.ci
+ * Exemples invalides : nom@, @email, nom email.com
+ */
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+/**
+ * isValidPhone - Verifie qu'un numero de telephone a le bon format
+ *
+ * EXPLICATION POUR DEBUTANT :
+ * Le telephone est optionnel. Si le champ est vide, c'est ok.
+ * Si il est rempli, on verifie qu'il contient entre 7 et 20
+ * caracteres parmi : chiffres (0-9), espaces, tirets, et
+ * eventuellement un + au debut (pour l'indicatif pays).
+ *
+ * Exemples valides : +225 07 18 67 66 96, 0718676696
+ * Exemples invalides : abc, 123
+ */
+function isValidPhone(phone) {
+  if (!phone) return true; // optionnel : vide = valide
+  return /^[\+]?[0-9\s\-]{7,20}$/.test(phone);
+}
+
+// --- Variable de limitation de frequence ---
+// On memorise le moment du dernier envoi pour empecher le spam
+var lastSubmitTime = 0;
+
+// --- Gestionnaire du formulaire ---
 var contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
@@ -228,13 +296,93 @@ if (contactForm) {
     // ^ preventDefault = empeche le comportement par defaut
     //   (qui serait de recharger la page)
 
-    // On recupere les valeurs des champs
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var phone = document.getElementById('phone').value;
-    var message = document.getElementById('message').value;
+    // --- Etape 1 : Verification du champ piege (honeypot) ---
+    // Le champ "website" est cache en CSS. Un humain ne le voit pas
+    // et ne le remplit jamais. Seuls les bots le remplissent.
+    var honeypot = document.getElementById('website');
+    if (honeypot && honeypot.value) {
+      // Bot detecte ! On reinitialise le formulaire sans rien dire.
+      contactForm.reset();
+      return;
+    }
 
-    // On construit le message WhatsApp
+    // --- Etape 2 : Limitation de frequence (rate limiting) ---
+    // On empeche l'envoi plus d'une fois toutes les 30 secondes.
+    // Date.now() retourne le nombre de millisecondes depuis le 1er janvier 1970.
+    var now = Date.now();
+    if (now - lastSubmitTime < 30000) {
+      // 30000 ms = 30 secondes
+      alert(
+        currentLang === 'fr'
+          ? 'Veuillez patienter avant de renvoyer.'
+          : 'Please wait before resubmitting.'
+      );
+      return;
+    }
+    lastSubmitTime = now;
+
+    // --- Etape 3 : Recuperation et nettoyage des donnees ---
+    var name = sanitizeInput(document.getElementById('name').value.trim());
+    var email = sanitizeInput(document.getElementById('email').value.trim());
+    var phone = sanitizeInput(document.getElementById('phone').value.trim());
+    var message = sanitizeInput(document.getElementById('message').value.trim());
+
+    // --- Etape 4 : Verification des longueurs maximales ---
+    // On empeche les saisies trop longues (protection contre les abus)
+    if (name.length > 100) {
+      alert(
+        currentLang === 'fr'
+          ? 'Le nom ne doit pas depasser 100 caracteres.'
+          : 'Name must not exceed 100 characters.'
+      );
+      return;
+    }
+    if (email.length > 254) {
+      alert(
+        currentLang === 'fr'
+          ? 'L\'email ne doit pas depasser 254 caracteres.'
+          : 'Email must not exceed 254 characters.'
+      );
+      return;
+    }
+    if (phone.length > 20) {
+      alert(
+        currentLang === 'fr'
+          ? 'Le telephone ne doit pas depasser 20 caracteres.'
+          : 'Phone must not exceed 20 characters.'
+      );
+      return;
+    }
+    if (message.length > 2000) {
+      alert(
+        currentLang === 'fr'
+          ? 'Le message ne doit pas depasser 2000 caracteres.'
+          : 'Message must not exceed 2000 characters.'
+      );
+      return;
+    }
+
+    // --- Etape 5 : Validation de l'email ---
+    if (!isValidEmail(email)) {
+      alert(
+        currentLang === 'fr'
+          ? 'Veuillez entrer une adresse email valide.'
+          : 'Please enter a valid email address.'
+      );
+      return;
+    }
+
+    // --- Etape 6 : Validation du telephone (si rempli) ---
+    if (!isValidPhone(phone)) {
+      alert(
+        currentLang === 'fr'
+          ? 'Veuillez entrer un numero de telephone valide.'
+          : 'Please enter a valid phone number.'
+      );
+      return;
+    }
+
+    // --- Etape 7 : Construction et envoi du message WhatsApp ---
     var waMessage =
       'Bonjour, je suis ' + name + '.\n' +
       'Email : ' + email + '\n' +
@@ -295,3 +443,97 @@ window.addEventListener('scroll', function () {
     }
   });
 });
+
+
+/* =============================================
+   7. SYSTEME DE CHANGEMENT DE LANGUE (FR/EN)
+   =============================================
+   Le site est bilingue francais/anglais.
+
+   Comment ca marche :
+   1. On lit la preference de langue dans localStorage
+      (memoire persistante du navigateur)
+   2. Si aucune preference, on utilise "fr" par defaut
+   3. Quand on clique sur le bouton de langue,
+      on bascule entre FR et EN
+   4. On sauvegarde le choix dans localStorage
+   5. On met a jour l'attribut lang du HTML
+   6. On ajoute la classe "lang-fr" ou "lang-en" au body
+      (le CSS utilise ces classes pour montrer/cacher
+       les textes dans la bonne langue)
+   7. On met a jour les placeholders du formulaire
+
+   localStorage :
+   C'est comme un petit carnet de notes dans le navigateur.
+   Les donnees persistent meme apres la fermeture du navigateur.
+   - localStorage.setItem('cle', 'valeur') = ecrire
+   - localStorage.getItem('cle') = lire
+============================================= */
+
+var langToggle = document.getElementById('langToggle');
+var currentLang = localStorage.getItem('axe-lang') || 'fr';
+
+/**
+ * setLanguage - Change la langue du site
+ *
+ * @param {string} lang - 'fr' pour francais, 'en' pour anglais
+ *
+ * Cette fonction fait 4 choses :
+ * 1. Sauvegarde la preference dans localStorage
+ * 2. Met a jour l'attribut lang du <html> (pour l'accessibilite)
+ * 3. Met a jour la classe du body (pour le CSS)
+ * 4. Met a jour le bouton de langue (indicateur visuel)
+ * 5. Met a jour les placeholders du formulaire
+ */
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('axe-lang', lang);
+
+  // Met a jour l'attribut lang du <html>
+  // Cela aide les lecteurs d'ecran et les moteurs de recherche
+  document.documentElement.lang = lang;
+
+  // Met a jour la classe du body
+  // Le CSS utilise .lang-fr et .lang-en pour afficher
+  // les textes dans la bonne langue
+  document.body.classList.remove('lang-fr', 'lang-en');
+  document.body.classList.add('lang-' + lang);
+
+  // Met a jour le bouton de langue (indicateur visuel)
+  if (langToggle) {
+    var spans = langToggle.querySelectorAll('span');
+    spans.forEach(function (s) { s.classList.remove('lang-active'); });
+    // On active le bon span : spans[0] = FR, spans[1] = separateur "|", spans[2] = EN
+    if (lang === 'fr') spans[0].classList.add('lang-active');
+    else spans[2].classList.add('lang-active');
+  }
+
+  // Met a jour les placeholders du formulaire
+  // Les placeholders sont les textes gris dans les champs vides
+  var nameInput = document.getElementById('name');
+  var emailInput = document.getElementById('email');
+  var phoneInput = document.getElementById('phone');
+  var messageInput = document.getElementById('message');
+
+  if (lang === 'en') {
+    if (nameInput) nameInput.placeholder = 'Your name';
+    if (emailInput) emailInput.placeholder = 'your@email.com';
+    if (phoneInput) phoneInput.placeholder = '+225 XX XX XX XX XX';
+    if (messageInput) messageInput.placeholder = 'Describe your project or needs...';
+  } else {
+    if (nameInput) nameInput.placeholder = 'Votre nom';
+    if (emailInput) emailInput.placeholder = 'votre@email.com';
+    if (phoneInput) phoneInput.placeholder = '+225 XX XX XX XX XX';
+    if (messageInput) messageInput.placeholder = 'Décrivez votre projet ou votre besoin...';
+  }
+}
+
+// On initialise la langue au chargement de la page
+setLanguage(currentLang);
+
+// Quand on clique sur le bouton de langue, on bascule
+if (langToggle) {
+  langToggle.addEventListener('click', function () {
+    setLanguage(currentLang === 'fr' ? 'en' : 'fr');
+  });
+}
