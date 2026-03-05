@@ -1494,10 +1494,10 @@ body:not(.lang-fr):not(.lang-en) .en {
   stroke: white;
 }
 
-/* Facebook - Bleu électrique */
+/* LinkedIn - Bleu officiel LinkedIn */
 .contact-info-item:nth-child(4) .contact-info-icon {
-  background: linear-gradient(135deg, #2563EB, #3B82F6);
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+  background: linear-gradient(135deg, #0A66C2, #0077B5);
+  box-shadow: 0 4px 16px rgba(10, 102, 194, 0.35);
 }
 .contact-info-item:nth-child(4) .contact-info-icon svg {
   fill: white;
@@ -1523,11 +1523,11 @@ body:not(.lang-fr):not(.lang-en) .en {
   margin-bottom: 4px;
 }
 
-/* Labels colorés pour chaque coordonnée */
-.contact-info-item:nth-child(1) strong { color: #34D399; }
-.contact-info-item:nth-child(2) strong { color: #A78BFA; }
-.contact-info-item:nth-child(3) strong { color: #FF8C00; }
-.contact-info-item:nth-child(4) strong { color: #60A5FA; }
+/* Labels colorés pour chaque coordonnée (couleurs de marque) */
+.contact-info-item:nth-child(1) strong { color: #25D366; } /* Téléphone - vert WhatsApp */
+.contact-info-item:nth-child(2) strong { color: #A78BFA; } /* Email - violet */
+.contact-info-item:nth-child(3) strong { color: #FF8C00; } /* Adresse - orange */
+.contact-info-item:nth-child(4) strong { color: #0A66C2; } /* LinkedIn - bleu officiel LinkedIn */
 
 .contact-info-item a,
 .contact-info-item span {
@@ -1650,10 +1650,10 @@ body:not(.lang-fr):not(.lang-en) .en {
 }
 
 /* Couleurs vives des icônes footer */
-.footer-contact-item:nth-child(1) svg { stroke: #34D399; }
-.footer-contact-item:nth-child(2) svg { stroke: #A78BFA; }
-.footer-contact-item:nth-child(3) svg { stroke: #FF8C00; }
-.footer-contact-item:nth-child(4) svg { fill: #60A5FA; stroke: none; }
+.footer-contact-item:nth-child(1) svg { stroke: #25D366; } /* Téléphone - vert */
+.footer-contact-item:nth-child(2) svg { stroke: #A78BFA; } /* Email - violet */
+.footer-contact-item:nth-child(3) svg { stroke: #FF8C00; } /* Adresse - orange */
+.footer-contact-item:nth-child(4) svg { fill: #0A66C2; stroke: none; } /* LinkedIn - bleu officiel */
 
 .footer-contact-item:hover svg {
   transform: scale(1.2);
