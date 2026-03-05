@@ -546,9 +546,9 @@ body:not(.lang-fr):not(.lang-en) .en {
   object-fit: cover;
   /* ^ "cover" = l'image remplit tout en gardant ses proportions,
      meme si ca coupe un peu sur les bords */
-  filter: url(#pixelate);
-  /* ^ Applique le filtre SVG de pixelisation */
-  transform: scale(1.05);
+  filter: brightness(0.9) contrast(1.1);
+  /* ^ Légère amélioration du contraste pour mieux voir l'image */
+  transform: scale(1.02);
   /* ^ Légèrement agrandi pour éviter les artefacts sur les bords */
 }
 
@@ -559,12 +559,12 @@ body:not(.lang-fr):not(.lang-en) .en {
   z-index: 1;
   background: linear-gradient(
     135deg,
-    rgba(14, 42, 71, 0.55) 0%,
-    rgba(14, 42, 71, 0.40) 40%,
+    rgba(14, 42, 71, 0.60) 0%,
+    rgba(14, 42, 71, 0.45) 40%,
     rgba(14, 42, 71, 0.35) 60%,
-    rgba(14, 42, 71, 0.50) 100%
+    rgba(14, 42, 71, 0.55) 100%
   );
-  /* ^ Overlay plus léger pour laisser voir l'image pixelisée
+  /* ^ Overlay semi-transparent pour laisser voir l'image
      en arrière-plan tout en gardant la lisibilité du texte */
 }
 
