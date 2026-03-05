@@ -546,6 +546,10 @@ body:not(.lang-fr):not(.lang-en) .en {
   object-fit: cover;
   /* ^ "cover" = l'image remplit tout en gardant ses proportions,
      meme si ca coupe un peu sur les bords */
+  filter: url(#pixelate);
+  /* ^ Applique le filtre SVG de pixelisation */
+  transform: scale(1.05);
+  /* ^ Légèrement agrandi pour éviter les artefacts sur les bords */
 }
 
 /* Couche 2 : Voile sombre par-dessus l'image */
@@ -555,15 +559,13 @@ body:not(.lang-fr):not(.lang-en) .en {
   z-index: 1;
   background: linear-gradient(
     135deg,
-    rgba(14, 42, 71, 0.92) 0%,
-    rgba(14, 42, 71, 0.75) 40%,
-    rgba(14, 42, 71, 0.65) 60%,
-    rgba(14, 42, 71, 0.85) 100%
+    rgba(14, 42, 71, 0.55) 0%,
+    rgba(14, 42, 71, 0.40) 40%,
+    rgba(14, 42, 71, 0.35) 60%,
+    rgba(14, 42, 71, 0.50) 100%
   );
-  /* ^ "linear-gradient" = un degrade qui va du coin haut-gauche
-     vers le coin bas-droite.
-     Les valeurs rgba() definissent la transparence :
-     0.92 = presque opaque, 0.65 = semi-transparent */
+  /* ^ Overlay plus léger pour laisser voir l'image pixelisée
+     en arrière-plan tout en gardant la lisibilité du texte */
 }
 
 /* Couche 3 : Le contenu textuel */

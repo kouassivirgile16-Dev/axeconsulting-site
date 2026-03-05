@@ -131,9 +131,9 @@
     <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="20 6 9 17 4 12"/>
     </symbol>
-    <!-- Icone Facebook -->
-    <symbol id="icon-facebook" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    <!-- Icone LinkedIn -->
+    <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
     </symbol>
     <!-- Icone shield-check (securite) -->
     <symbol id="icon-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -245,8 +245,19 @@
     3. hero-content = le texte et les boutons PAR-DESSUS le voile
     ============================================================
   -->
+  <!-- Filtre SVG pour pixeliser l'image de fond -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <filter id="pixelate" x="0" y="0" width="100%" height="100%">
+      <feFlood x="4" y="4" height="2" width="2"/>
+      <feComposite width="12" height="12"/>
+      <feTile result="a"/>
+      <feComposite in="SourceGraphic" in2="a" operator="in"/>
+      <feMorphology operator="dilate" radius="6"/>
+    </filter>
+  </svg>
+
   <section class="hero" id="hero">
-    <!-- Couche 1 : Image de fond -->
+    <!-- Couche 1 : Image de fond (pixelisée) -->
     <div class="hero-bg">
       <img src="images/1F6AD0A5-B0DD-4F09-9FD2-F661F4FE2F93.PNG" alt="Pont Alassane Ouattara - Abidjan, Côte d'Ivoire">
     </div>
@@ -268,13 +279,13 @@
         <!-- Tagline strategique -->
         <div class="hero-tag">
           <span class="hero-tag-line"></span>
-          🎯 <span class="fr">Performance &ndash; Structuration &ndash; Excellence opérationnelle</span><span class="en">Performance &ndash; Structuring &ndash; Operational Excellence</span>
+          <span class="fr">Performance &ndash; Structuration &ndash; Excellence opérationnelle</span><span class="en">Performance &ndash; Structuring &ndash; Operational Excellence</span>
         </div>
 
         <!-- Bouton d'action -->
         <div class="hero-buttons">
           <a href="#contact" class="btn btn-primary">
-            👉 <span class="fr">Prendre rendez-vous</span><span class="en">Book an Appointment</span>
+            <span class="fr">Prendre rendez-vous</span><span class="en">Book an Appointment</span>
           </a>
         </div>
       </div>
@@ -407,7 +418,7 @@
         <div class="sd-icon-wrap">
           <svg><use href="#icon-users"/></svg>
         </div>
-        <h2>🎯 <span class="fr">Recrutement sur mesure pour PME &amp; PMI en Côte d'Ivoire</span><span class="en">Custom Recruitment for SMEs in Ivory Coast</span></h2>
+        <h2><span class="fr">Recrutement sur mesure pour PME &amp; PMI en Côte d'Ivoire</span><span class="en">Custom Recruitment for SMEs in Ivory Coast</span></h2>
       </div>
 
       <div class="sd-intro rv">
@@ -427,7 +438,7 @@
       <div class="sd-grid rv">
         <!-- Notre approche -->
         <div class="sd-card">
-          <h3>🔎 <span class="fr">Notre approche</span><span class="en">Our Approach</span></h3>
+          <h3><span class="fr">Notre approche</span><span class="en">Our Approach</span></h3>
           <ul class="sd-list">
             <li><svg><use href="#icon-check"/></svg><span class="fr">Analyse approfondie du besoin et du contexte</span><span class="en">In-depth analysis of needs and context</span></li>
             <li><svg><use href="#icon-check"/></svg><span class="fr">Définition précise du profil recherché</span><span class="en">Precise definition of the required profile</span></li>
@@ -440,7 +451,7 @@
 
         <!-- Nos cibles -->
         <div class="sd-card">
-          <h3>💼 <span class="fr">Nos cibles</span><span class="en">Our Targets</span></h3>
+          <h3><span class="fr">Nos cibles</span><span class="en">Our Targets</span></h3>
           <ul class="sd-list sd-list-bullets">
             <li><span class="fr">PME en croissance</span><span class="en">Growing SMEs</span></li>
             <li><span class="fr">PMI industrielles</span><span class="en">Industrial SMIs</span></li>
@@ -449,7 +460,7 @@
           </ul>
 
           <div class="sd-promise">
-            <h4>🤝 <span class="fr">Notre promesse</span><span class="en">Our Promise</span></h4>
+            <h4><span class="fr">Notre promesse</span><span class="en">Our Promise</span></h4>
             <p><span class="fr">Vous faire gagner du temps, sécuriser vos recrutements et contribuer durablement à votre performance.</span><span class="en">Save you time, secure your recruitment, and sustainably contribute to your performance.</span></p>
           </div>
         </div>
@@ -457,9 +468,9 @@
 
       <!-- CTA -->
       <div class="sd-cta rv">
-        <p>📩 <span class="fr">Vous recrutez ? Confiez-nous votre besoin et bénéficiez d'un accompagnement professionnel, confidentiel et sur mesure.</span><span class="en">Are you recruiting? Entrust us with your needs and benefit from professional, confidential, and tailored support.</span></p>
+        <p><span class="fr">Vous recrutez ? Confiez-nous votre besoin et bénéficiez d'un accompagnement professionnel, confidentiel et sur mesure.</span><span class="en">Are you recruiting? Entrust us with your needs and benefit from professional, confidential, and tailored support.</span></p>
         <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20le%20recrutement%20sur%20mesure." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          👉 <span class="fr">Confiez-nous votre recrutement</span><span class="en">Entrust Us with Your Recruitment</span>
+          <span class="fr">Confiez-nous votre recrutement</span><span class="en">Entrust Us with Your Recruitment</span>
         </a>
       </div>
     </div>
@@ -483,7 +494,7 @@
         <div class="sd-icon-wrap">
           <svg><use href="#icon-building"/></svg>
         </div>
-        <h2>🌍 <span class="fr">Création d'entreprise en Côte d'Ivoire &ndash; 100% à distance pour la diaspora</span><span class="en">Business Creation in Ivory Coast &ndash; 100% Remote for the Diaspora</span></h2>
+        <h2><span class="fr">Création d'entreprise en Côte d'Ivoire &ndash; 100% à distance pour la diaspora</span><span class="en">Business Creation in Ivory Coast &ndash; 100% Remote for the Diaspora</span></h2>
       </div>
 
       <div class="sd-intro rv">
@@ -496,7 +507,7 @@
       <div class="sd-grid rv">
         <!-- A qui s'adresse cette prestation -->
         <div class="sd-card">
-          <h3>🎯 <span class="fr">À qui s'adresse cette prestation ?</span><span class="en">Who Is This Service For?</span></h3>
+          <h3><span class="fr">À qui s'adresse cette prestation ?</span><span class="en">Who Is This Service For?</span></h3>
           <ul class="sd-list sd-list-bullets">
             <li><span class="fr">Ivoiriens résidant en Europe, Amérique, Afrique, Moyen-Orient</span><span class="en">Ivorians living in Europe, America, Africa, Middle East</span></li>
             <li><span class="fr">Entrepreneurs de la diaspora souhaitant investir en Côte d'Ivoire</span><span class="en">Diaspora entrepreneurs wishing to invest in Ivory Coast</span></li>
@@ -507,7 +518,7 @@
 
         <!-- Nos services incluent -->
         <div class="sd-card">
-          <h3>🏢 <span class="fr">Nos services incluent</span><span class="en">Our Services Include</span></h3>
+          <h3><span class="fr">Nos services incluent</span><span class="en">Our Services Include</span></h3>
           <ul class="sd-list">
             <li><svg><use href="#icon-check"/></svg><span class="fr">Choix de la forme juridique adaptée</span><span class="en">Choice of the appropriate legal form</span></li>
             <li><svg><use href="#icon-file-text"/></svg><span class="fr">Rédaction des statuts</span><span class="en">Drafting of articles of incorporation</span></li>
@@ -522,7 +533,7 @@
 
       <!-- 100% digital -->
       <div class="sd-block sd-block-highlight rv">
-        <h3>🔐 <span class="fr">100% digital &ndash; 100% sécurisé</span><span class="en">100% Digital &ndash; 100% Secure</span></h3>
+        <h3><span class="fr">100% digital &ndash; 100% sécurisé</span><span class="en">100% Digital &ndash; 100% Secure</span></h3>
         <p><span class="fr">Toutes les démarches sont effectuées à distance avec :</span><span class="en">All procedures are carried out remotely with:</span></p>
         <ul class="sd-list sd-list-inline">
           <li><span class="fr">Signature électronique</span><span class="en">Electronic signature</span></li>
@@ -534,16 +545,16 @@
 
       <!-- Pourquoi nous -->
       <div class="sd-block rv">
-        <h3>💼 <span class="fr">Pourquoi nous faire confiance ?</span><span class="en">Why Trust Us?</span></h3>
+        <h3><span class="fr">Pourquoi nous faire confiance ?</span><span class="en">Why Trust Us?</span></h3>
         <p><span class="fr">Forte de 10 ans d'expérience en multinationales, j'accompagne les entrepreneurs avec rigueur, méthode et vision stratégique.</span><span class="en">With 10 years of multinational experience, I support entrepreneurs with rigor, method, and strategic vision.</span></p>
         <p class="sd-emphasis"><span class="fr">Nous ne faisons pas que créer votre entreprise.<br>Nous vous aidons à poser des bases solides pour une croissance durable.</span><span class="en">We don't just create your business.<br>We help you lay solid foundations for sustainable growth.</span></p>
       </div>
 
       <!-- CTA -->
       <div class="sd-cta rv">
-        <p>📩 <span class="fr">Vous souhaitez entreprendre depuis l'étranger ? Confiez-nous votre projet et lancez votre entreprise en Côte d'Ivoire en toute sérénité.</span><span class="en">Want to start a business from abroad? Entrust us with your project and launch your company in Ivory Coast with complete peace of mind.</span></p>
+        <p><span class="fr">Vous souhaitez entreprendre depuis l'étranger ? Confiez-nous votre projet et lancez votre entreprise en Côte d'Ivoire en toute sérénité.</span><span class="en">Want to start a business from abroad? Entrust us with your project and launch your company in Ivory Coast with complete peace of mind.</span></p>
         <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20la%20cr%C3%A9ation%20d%27entreprise%20%C3%A0%20distance." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          👉 <span class="fr">Prenez rendez-vous pour un premier échange confidentiel</span><span class="en">Book a First Confidential Consultation</span>
+          <span class="fr">Prenez rendez-vous pour un premier échange confidentiel</span><span class="en">Book a First Confidential Consultation</span>
         </a>
       </div>
     </div>
@@ -567,7 +578,7 @@
         <div class="sd-icon-wrap">
           <svg><use href="#icon-briefcase"/></svg>
         </div>
-        <h2>📊 <span class="fr">Gestion administrative &amp; Conseil stratégique pour PME/PMI en Côte d'Ivoire</span><span class="en">Administrative Management &amp; Strategic Consulting for SMEs in Ivory Coast</span></h2>
+        <h2><span class="fr">Gestion administrative &amp; Conseil stratégique pour PME/PMI en Côte d'Ivoire</span><span class="en">Administrative Management &amp; Strategic Consulting for SMEs in Ivory Coast</span></h2>
       </div>
 
       <div class="sd-intro rv">
@@ -578,7 +589,7 @@
 
       <!-- Mission -->
       <div class="sd-block sd-block-highlight rv">
-        <h3>🎯 <span class="fr">Notre mission</span><span class="en">Our Mission</span></h3>
+        <h3><span class="fr">Notre mission</span><span class="en">Our Mission</span></h3>
         <p><span class="fr">Vous permettre de vous concentrer sur votre c&oelig;ur d'activité pendant que nous structurons et sécurisons votre gestion administrative.</span><span class="en">Allow you to focus on your core business while we structure and secure your administrative management.</span></p>
       </div>
 
@@ -586,7 +597,7 @@
       <div class="sd-grid rv">
         <!-- Domaines d'intervention -->
         <div class="sd-card">
-          <h3>🗂 <span class="fr">Nos domaines d'intervention</span><span class="en">Our Areas of Expertise</span></h3>
+          <h3><span class="fr">Nos domaines d'intervention</span><span class="en">Our Areas of Expertise</span></h3>
           <ul class="sd-list">
             <li><svg><use href="#icon-check"/></svg><span class="fr">Organisation et optimisation administrative</span><span class="en">Administrative organization and optimization</span></li>
             <li><svg><use href="#icon-check"/></svg><span class="fr">Mise en place de procédures internes</span><span class="en">Implementation of internal procedures</span></li>
@@ -601,7 +612,7 @@
 
         <!-- Pour qui -->
         <div class="sd-card">
-          <h3>💼 <span class="fr">Pour qui ?</span><span class="en">Who Is It For?</span></h3>
+          <h3><span class="fr">Pour qui ?</span><span class="en">Who Is It For?</span></h3>
           <ul class="sd-list sd-list-bullets">
             <li><span class="fr">PME en phase de croissance</span><span class="en">SMEs in growth phase</span></li>
             <li><span class="fr">PMI industrielles</span><span class="en">Industrial SMIs</span></li>
@@ -610,7 +621,7 @@
           </ul>
 
           <div class="sd-promise">
-            <h4>🚀 <span class="fr">Notre valeur ajoutée</span><span class="en">Our Added Value</span></h4>
+            <h4><span class="fr">Notre valeur ajoutée</span><span class="en">Our Added Value</span></h4>
             <p><span class="fr">Avec 10 ans d'expérience en multinationales, nous apportons aux PME ivoiriennes :</span><span class="en">With 10 years of multinational experience, we bring Ivorian SMEs:</span></p>
             <ul class="sd-list sd-list-bullets">
               <li><span class="fr">Des méthodes éprouvées</span><span class="en">Proven methods</span></li>
@@ -625,9 +636,9 @@
 
       <!-- CTA -->
       <div class="sd-cta rv">
-        <p>🤝 <span class="fr">Vous souhaitez structurer votre entreprise ? Un diagnostic organisationnel peut faire toute la différence.</span><span class="en">Want to structure your business? An organizational diagnostic can make all the difference.</span></p>
+        <p><span class="fr">Vous souhaitez structurer votre entreprise ? Un diagnostic organisationnel peut faire toute la différence.</span><span class="en">Want to structure your business? An organizational diagnostic can make all the difference.</span></p>
         <a href="https://wa.me/2250718676696?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20la%20gestion%20administrative%20et%20le%20conseil%20strat%C3%A9gique." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          👉 <span class="fr">Contactez AXECONSULTING RH pour un premier échange stratégique et confidentiel</span><span class="en">Contact AXECONSULTING RH for a First Strategic &amp; Confidential Discussion</span>
+          <span class="fr">Contactez AXECONSULTING RH pour un premier échange stratégique et confidentiel</span><span class="en">Contact AXECONSULTING RH for a First Strategic &amp; Confidential Discussion</span>
         </a>
       </div>
     </div>
@@ -737,7 +748,7 @@
     - Nom, Email, Telephone, Message
 
     + Coordonnees a droite
-    + Mention Facebook
+    + Mention LinkedIn
 
     "required" sur les champs = le navigateur verifie que
     l'utilisateur a bien rempli avant d'envoyer.
@@ -820,11 +831,11 @@
               </div>
               <div class="contact-info-item">
                 <div class="contact-info-icon">
-                  <svg fill="currentColor"><use href="#icon-facebook"/></svg>
+                  <svg fill="currentColor"><use href="#icon-linkedin"/></svg>
                 </div>
                 <div>
-                  <strong>Facebook</strong>
-                  <span>SEA MULTISERVICES CI</span>
+                  <strong>LinkedIn</strong>
+                  <span>AXECONSULTING RH</span>
                 </div>
               </div>
             </div>
@@ -902,8 +913,8 @@
             <span><span class="fr">Abidjan, Côte d'Ivoire</span><span class="en">Abidjan, Ivory Coast</span></span>
           </div>
           <div class="footer-contact-item">
-            <svg fill="currentColor"><use href="#icon-facebook"/></svg>
-            <span>SEA MULTISERVICES CI</span>
+            <svg fill="currentColor"><use href="#icon-linkedin"/></svg>
+            <span>AXECONSULTING RH</span>
           </div>
         </div>
       </div>
@@ -911,7 +922,7 @@
       <!-- Barre de copyright tout en bas -->
       <div class="footer-bottom">
         <span>&copy; 2026 AXECONSULTING RH &mdash; <span class="fr">Tous droits réservés</span><span class="en">All rights reserved</span></span>
-        <span><span class="fr">Retrouvez-nous sur Facebook</span><span class="en">Find us on Facebook</span> : SEA MULTISERVICES CI</span>
+        <span><span class="fr">Retrouvez-nous sur LinkedIn</span><span class="en">Find us on LinkedIn</span> : AXECONSULTING RH</span>
       </div>
     </div>
   </footer>
