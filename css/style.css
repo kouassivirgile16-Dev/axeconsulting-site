@@ -1524,10 +1524,14 @@ body:not(.lang-fr):not(.lang-en) .en {
 }
 
 /* Labels colorés pour chaque coordonnée (couleurs de marque) */
-.contact-info-item:nth-child(1) strong { color: #25D366; } /* Téléphone - vert WhatsApp */
-.contact-info-item:nth-child(2) strong { color: #A78BFA; } /* Email - violet */
-.contact-info-item:nth-child(3) strong { color: #FF8C00; } /* Adresse - orange */
-.contact-info-item:nth-child(4) strong { color: #0A66C2; } /* LinkedIn - bleu officiel LinkedIn */
+.contact-info-item:nth-child(1) strong,
+.contact-info-item:nth-child(1) strong span { color: #25D366; } /* Téléphone - vert WhatsApp */
+.contact-info-item:nth-child(2) strong,
+.contact-info-item:nth-child(2) strong span { color: #A78BFA; } /* Email - violet */
+.contact-info-item:nth-child(3) strong,
+.contact-info-item:nth-child(3) strong span { color: #FF8C00; } /* Adresse - orange */
+.contact-info-item:nth-child(4) strong,
+.contact-info-item:nth-child(4) strong span { color: #0A66C2; } /* LinkedIn - bleu officiel LinkedIn */
 
 .contact-info-item a,
 .contact-info-item span {
